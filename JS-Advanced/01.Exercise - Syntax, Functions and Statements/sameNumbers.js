@@ -1,4 +1,4 @@
-function sameNumbers(...number) {
+function sameNumbers(number) {
     let numsArr = number.toString().split('').map(Number);
     let sum = numsArr.reduce((sum, val) => sum + val);
     let areTheSame = true;
