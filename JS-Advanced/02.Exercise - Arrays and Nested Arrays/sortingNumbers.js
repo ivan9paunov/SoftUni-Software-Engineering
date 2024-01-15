@@ -1,6 +1,5 @@
 function sortingNumbers(numsArr) {
     numsArr.sort((a, b) => a - b);
-    let rotations = Math.ceil(numsArr.length / 2);
     let sortedArr = [];
 
     while (numsArr.length > 0) {
