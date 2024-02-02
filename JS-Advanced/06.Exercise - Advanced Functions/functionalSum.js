@@ -1,14 +1,14 @@
-function add(acc) {
-    function sum(a) {
-        acc += a;
-        return sum;
+function add(num) {
+    let sum = 0;
+    sum += num;
+
+    function calc(anotherNum) {
+        sum += anotherNum;
+        return calc;
     }
 
-    sum.toString = function () {
-        return acc.toString();
-    }
-
-    return sum;
+    calc.toString = () => sum;
+    return calc;
 }
 
 console.log(add(1)(6)(8).toString());
