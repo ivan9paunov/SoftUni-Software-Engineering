@@ -1,80 +1,97 @@
 function solve() {
-    const [addTaskSection, openSection, inProgressSection, completeSection] = document.querySelectorAll('section');
     const formRef = document.querySelector('form');
+    const taskRef = document.getElementById('task');
+    const descriptionRef = document.getElementById('description');
+    const dateRef = document.getElementById('date');
+    const addBtn = document.getElementById('add');
+    const allSections = document.querySelectorAll('section');
+    const openSection = allSections[1].children[1];
+    const inProgressSection = allSections[2].children[1];
+    const completeSection = allSections[3].children[1];
 
-    let btnHandler = {
-        start: function (event) {
-            let currentArticle = event.target.parentElement.parentElement;
-            removeBtn(event.target.parentElement);
-            currentArticle.innerHTML += getBtnPartial({ classes: 'red', text: 'Delete' },
-                { classes: 'orange', text: 'Finish' });
-            let btns = currentArticle.querySelectorAll('button');
-            addEventListenerToButton(btns);
-            inProgressSection.children[1].appendChild(currentArticle);
-        },
-        finish: function (event) {
-            let currentArticle = event.target.parentElement.parentElement;
-            removeBtn(event.target.parentElement);
-            completeSection.children[1].appendChild(currentArticle);
-        },
-        delete: function (event) {
-            let currentArticle = event.target.parentElement.parentElement;
-            currentArticle.remove();
-        }
-    }
+    formRef.addEventListener('submit', createData);
 
-    formRef.addEventListener('submit', onSubmitHandler);
-
-    function onSubmitHandler(event) {
+    function createData(event) {
         event.preventDefault();
-        let formElements = event.target.elements;
-        let taskName = formElements[0].value;
-        let description = formElements[1].value;
-        let dueDate = formElements[2].value;
 
-        if (!taskName || !description || !dueDate) {
+        const task = taskRef.value;
+        const description = descriptionRef.value;
+        const date = dateRef.value;
+
+        if (!task || !description || !date) {
             return;
         }
 
-        createArticle(taskName, description, dueDate);
+        const article = createArticle(task, description, date);
+        openSection.appendChild(article);
 
-        formElements[0].value = '';
-        formElements[1].value = '';
-        formElements[2].value = '';
+        formRef.reset();
     }
 
-    function createArticle(task, description, dueDate) {
-        const articleEl = document.createElement('article');
-        articleEl.innerHTML = getArticleTemplate(task, description, dueDate);
-        openSection.children[1].appendChild(articleEl);
-        let btns = articleEl.querySelectorAll('button');
-        addEventListenerToButton(btns);
+    function createArticle(task, description, date) {
+        const articleEl = createEl('article');
+        articleEl.appendChild(createEl('h3', task));
+        articleEl.appendChild(createEl('p', `Description: ${description}`));
+        articleEl.appendChild(createEl('p', `Due Date: ${date}`));
+
+        const divEl = createEl('div');
+        divEl.classList.add('flex');
+
+        const startBtn = createEl('button', 'Start');
+        const deleteBtn = createEl('button', 'Delete');
+        startBtn.classList.add('green');
+        deleteBtn.classList.add('red');
+
+        divEl.appendChild(startBtn);
+        divEl.appendChild(deleteBtn);
+        articleEl.appendChild(divEl);
+
+        startBtn.addEventListener('click', startCourse);
+        deleteBtn.addEventListener('click', onDelete);
+
+        return articleEl;
     }
 
-    function clickHandler(event) {
-        let currentAction = event.target.innerText.toLowerCase();
-        btnHandler[currentAction](event);
+    function startCourse(event) {
+        const article = event.target.parentElement.parentElement;
+        event.target.parentElement.remove();
+
+        inProgressSection.appendChild(article);
+
+        const divEl = createEl('div');
+        divEl.classList.add('flex');
+
+        const deleteBtn = createEl('button', 'Delete');
+        const finishBtn = createEl('button', 'Finish');
+        deleteBtn.classList.add('red');
+        finishBtn.classList.add('orange');
+
+        divEl.appendChild(deleteBtn);
+        divEl.appendChild(finishBtn);
+        article.appendChild(divEl);
+
+        deleteBtn.addEventListener('click', onDelete);
+        finishBtn.addEventListener('click', onFinish);
     }
 
-    function addEventListenerToButton(btns) {
-        Array.from(btns).forEach((btn) => btn.addEventListener('click', clickHandler));
+    function onDelete(event) {
+        event.target.parentElement.parentElement.remove();
     }
 
-    function getArticleTemplate(task, description, dueDate) {
-        return `<h3>${task}</h3>` +
-                    `<p>Description: ${description}</p>` +
-                    `<p>Due Date: ${dueDate}</p>` +
-            getBtnPartial({ classes: 'green', text: 'Start' }, { classes: 'red', text: 'Delete' });
+    function onFinish(event) {
+        const article = event.target.parentElement.parentElement;
+        event.target.parentElement.remove();
+
+        completeSection.appendChild(article);
     }
 
-    function getBtnPartial(btn1, btn2) {
-        return `<div class="flex">` +
-                    `<button class=${btn1.classes}>${btn1.text}</button>` +
-                    `<button class=${btn2.classes}>${btn2.text}</button>` +
-                `</div>`
-    }
+    function createEl(type, content) {
+        const element = document.createElement(type);
 
-    function removeBtn(target) {
-        target.remove();
+        if (content) {
+            element.textContent = content;
+        }
+
+        return element;
     }
 }
