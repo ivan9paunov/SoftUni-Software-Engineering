@@ -37,6 +37,8 @@ function attachEvents() {
     document.getElementById('refresh').addEventListener('click', onRefresh);
 
     async function onRefresh() {
+        viewArea.replaceChildren();
+
         const response = await fetch(url);
         const data = await response.json();
 
