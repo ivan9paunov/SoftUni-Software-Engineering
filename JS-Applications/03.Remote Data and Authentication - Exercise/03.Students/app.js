@@ -11,6 +11,10 @@ async function onSubmit(event) {
     const formData = new FormData(form);
     const { firstName, lastName, facultyNumber, grade } = Object.fromEntries(formData);
     
+    if (!firstName || !lastName || !facultyNumber || !grade) {
+        return;
+    }
+
     try {
         const request = await fetch(url, {
             method: 'POST',
@@ -50,7 +54,7 @@ async function displayData() {
             const trElement = createTableRow(person.firstName, person.lastName, person.facultyNumber, person.grade);
             tableBody.appendChild(trElement);
         });
-        
+
     } catch (error) {
         alert(error.message);
     }
