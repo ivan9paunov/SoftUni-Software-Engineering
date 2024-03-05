@@ -1,84 +1,55 @@
-let userData;
+let userData = null;
 const catches = document.getElementById('catches');
 
-window.addEventListener('load', async () => {
+window.addEventListener('DOMContentLoaded', async () => {
     userData = JSON.parse(localStorage.getItem('user'));
-
+    
     catches.replaceChildren();
-
-    await toggleBtns();
-
+    
+    toggleBtns();
+    
     //Home button
-    document.querySelector('a[id=home]').addEventListener('click', () => {
-        window.location.reload();
+    document.getElementById('home').addEventListener('click', () => {
+        window.location = 'index.html';
     });
     //Logout button
-    document.querySelector('a[id=logout]').addEventListener('click', onLogout);
+    document.getElementById('logout').addEventListener('click', onLogout);
     //Load button
     document.querySelector('.load').addEventListener('click', onLoad);
     //Add button
-    document.querySelector('.add').addEventListener('click', onAdd);
+    document.getElementById('addForm').addEventListener('submit', onAdd);
 });
 
-
 async function onLoad() {
-    const url = 'http://localhost:3030/data/catches';
-
     try {
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message);
-        }
-    
+        const response = await fetch('http://localhost:3030/data/catches')
+
         const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        catches.replaceChildren(...data.map(createCatch));
         
-        catches.replaceChildren();
-    
-        data.forEach(el => {
-            const catchElement = createCatch(el.angler, el.weight, el.species, el.location, el.bait, el.captureTime, el._ownerId, el._id);
-            catches.appendChild(catchElement);
-        });
-        
-    } catch (error) {
-        alert(error.message);
+    } catch (err) {
+        alert(err.message);
     }
 }
 
 async function onAdd(event) {
     event.preventDefault();
 
-    const addForm = document.getElementById('addForm');
-    const formData = new FormData(addForm);
-    let { angler, weight, species, location, bait, captureTime } = Object.fromEntries(formData.entries());
-    
-    angler = angler.trim();
-    weight = weight.trim();
-    species = species.trim();
-    location = location.trim();
-    bait = bait.trim();
-    captureTime = captureTime.trim();
+    const formData = new FormData(event.target);
+    let { angler, weight, species, location, bait, captureTime } = Object.fromEntries(formData);
 
     const url = 'http://localhost:3030/data/catches';
-    
+
     try {
         if (!angler || !weight || !species || !location || !bait || !captureTime) {
             throw new Error('All inputs must be filled!');
         }
 
-        weight = Number(weight);
-        captureTime = Number(captureTime);
-
-        if (isNaN(weight)) {
-            throw new Error('The weight value must be a number!');
-        }
-
-        if (!Number.isInteger(captureTime)) {
-            throw new Error('The Capture Time value must be an integer!');
-        }
-
-        const request = await fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -86,15 +57,13 @@ async function onAdd(event) {
             },
             body: JSON.stringify({ angler, weight, species, location, bait, captureTime })
         });
-        
-        if (!request.ok) {
-            const error = await request.json();
+
+        if (!response.ok) {
+            const error = await response.json();
             throw new Error(error.message);
         }
 
-        const el = await request.json();
-
-        catches.appendChild(createCatch(el.angler, el.weight, el.species, el.location, el.bait, el.captureTime, el._ownerId, el._id));
+        await onLoad();
         addForm.reset();
 
     } catch (error) {
@@ -103,22 +72,23 @@ async function onAdd(event) {
 }
 
 async function onLogout() {
+    const userData = JSON.parse(localStorage.getItem("user"));
     const url = 'http://localhost:3030/users/logout';
-    
+
     try {
         const response = await fetch(url, {
             method: 'GET',
             headers: { 'X-Authorization': userData.accessToken }
         });
-        
+
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message);
         }
 
-        localStorage.clear();
+        localStorage.removeItem('user');
         window.location = 'index.html';
-        
+
     } catch (error) {
         alert(error.message);
     }
@@ -135,6 +105,7 @@ async function toggleBtns() {
         guest.style.display = 'none';
         greetingName.textContent = userData.email;
         addBtn.disabled = false;
+        await onLoad();
     } else {
         user.style.display = 'none';
         guest.style.display = 'inline-block';
@@ -143,50 +114,47 @@ async function toggleBtns() {
     }
 }
 
-function createCatch(angler, weight, species, location, bait, captureTime, ownerId, id) {
-    let userId;
-    
-    if (userData) {
-        userId = userData._id;
-    }
-    
+function createCatch(data) {
+    const isOwner = userData && data._ownerId === userData._id;
+
     const catchDiv = document.createElement('div');
     catchDiv.classList.add('catch');
+    catchDiv.dataset.id = data._id;
 
     catchDiv.appendChild(createLabel('Angler'));
-    const anglerInput = createInput('text', 'angler', angler);
-    anglerInput.disabled = userId == ownerId ? false : true;
+    const anglerInput = createInput('text', 'angler', data.angler);
+    anglerInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(anglerInput);
 
     catchDiv.appendChild(createLabel('Weight'));
-    const weightInput = createInput('text', 'weight', weight);
-    weightInput.disabled = userId == ownerId ? false : true;
+    const weightInput = createInput('text', 'weight', data.weight);
+    weightInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(weightInput);
 
     catchDiv.appendChild(createLabel('Species'));
-    const speciesInput = createInput('text', 'species', species);
-    speciesInput.disabled = userId == ownerId ? false : true;
+    const speciesInput = createInput('text', 'species', data.species);
+    speciesInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(speciesInput);
 
     catchDiv.appendChild(createLabel('Location'));
-    const locationInput = createInput('text', 'location', location);
-    locationInput.disabled = userId == ownerId ? false : true;
+    const locationInput = createInput('text', 'location', data.location);
+    locationInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(locationInput);
 
     catchDiv.appendChild(createLabel('Bait'));
-    const baitInput = createInput('text', 'bait', bait);
-    baitInput.disabled = userId == ownerId ? false : true;
+    const baitInput = createInput('text', 'bait', data.bait);
+    baitInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(baitInput);
 
     catchDiv.appendChild(createLabel('Capture Time'));
-    const captureTimeInput = createInput('number', 'captureTime', captureTime);
-    captureTimeInput.disabled = userId == ownerId ? false : true;
+    const captureTimeInput = createInput('number', 'captureTime', data.captureTime);
+    captureTimeInput.disabled = isOwner ? false : true;
     catchDiv.appendChild(captureTimeInput);
-    
-    const updateBtn = createBtn('Update', 'update', id);
-    const deleteBtn = createBtn('Delete', 'delete', id);
-    updateBtn.disabled = userId == ownerId ? false : true;
-    deleteBtn.disabled = userId == ownerId ? false : true;
+
+    const updateBtn = createBtn('Update', 'update', data._id);
+    const deleteBtn = createBtn('Delete', 'delete', data._id);
+    updateBtn.disabled = isOwner ? false : true;
+    deleteBtn.disabled = isOwner ? false : true;
     catchDiv.appendChild(updateBtn);
     catchDiv.appendChild(deleteBtn);
 
@@ -201,28 +169,17 @@ async function onUpdate(event) {
     const userId = event.target.dataset.id;
 
     const angler = catchDiv.querySelector('.angler').value;
-    let weight = catchDiv.querySelector('.weight').value;
+    const weight = catchDiv.querySelector('.weight').value;
     const species = catchDiv.querySelector('.species').value;
     const location = catchDiv.querySelector('.location').value;
     const bait = catchDiv.querySelector('.bait').value;
-    let captureTime = catchDiv.querySelector('.captureTime').value;
-    
+    const captureTime = catchDiv.querySelector('.captureTime').value;
+
     const url = `http://localhost:3030/data/catches/${userId}`;
-    
+
     try {
         if (!angler || !weight || !species || !location || !bait || !captureTime) {
             throw new Error('All inputs must be filled!');
-        }
-
-        weight = Number(weight);
-        captureTime = Number(captureTime);
-
-        if (isNaN(weight)) {
-            throw new Error('The weight value must be a number!');
-        }
-
-        if (!Number.isInteger(captureTime)) {
-            throw new Error('The Capture Time value must be an integer!');
         }
 
         const response = await fetch(url, {
@@ -233,13 +190,11 @@ async function onUpdate(event) {
             },
             body: JSON.stringify({ angler, weight, species, location, bait, captureTime })
         });
-        
+
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message);
         }
-
-        // await onLoad();
 
     } catch (error) {
         alert(error.message);
@@ -252,21 +207,13 @@ async function onDelete(event) {
 
     try {
         event.target.parentElement.remove();
-        const request = await fetch(url, {
+        const response = await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
                 'X-Authorization': userData.accessToken
             }
         });
 
-        if (!request.ok) {
-            const error = await request.json();
-            throw new Error(error.message);
-        }
-    
-        // await onLoad();
-        
     } catch (error) {
         alert(error.message);
     }

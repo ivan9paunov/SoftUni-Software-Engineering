@@ -52,7 +52,7 @@ function toggleBtns() {
     const user = document.getElementById('user');
     const guest = document.getElementById('guest');
     const greetingName = document.querySelector('.email > span');
-    const userData = JSON.parse(localStorage.getItem('userData'));
+    const userData = JSON.parse(localStorage.getItem('user'));
 
     if (userData) {
         user.style.display = 'inline-block';
