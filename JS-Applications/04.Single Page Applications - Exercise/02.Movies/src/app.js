@@ -52,3 +52,4 @@ export function updateNav() {
 }
 
 updateNav();
+showHomePage();
