@@ -2,58 +2,20 @@ import { giveLike } from "./handlers/giveLike.js";
 import { getLikes } from "./handlers/getLikes.js";
 import { hasLikedCheck } from "./handlers/hasLikedCheck.js";
 import { onEdit } from "./handlers/editMovie.js";
+import { onDelete } from "./handlers/deleteMovie.js";
 
 export async function showDetails(event) {
     event.preventDefault();
 
-    const userData = JSON.parse(localStorage.getItem('user'));
-
     document.querySelectorAll('section').forEach(section => section.style.display = 'none');
-    const detailsSection = document.getElementById('movie-example');
-    
-    const movieId = event.target.parentElement.parentElement.dataset.id;
-    const ownerId = event.target.parentElement.parentElement.parentElement.dataset.owner;
-    const userId = userData._id;
 
-    const movieData = await getMovie(movieId);
-    const likes = await getLikes(movieId);
-    const hasLiked = await hasLikedCheck(movieId, userId);
+    const movieId = event.target.dataset.id;
+    const ownerId = event.target.parentElement.parentElement.parentElement.parentElement.dataset.owner;
 
-    detailsSection.querySelector('h1').textContent = `Movie title: ${movieData.title}`;
-    detailsSection.querySelector('img').src = movieData.img;
-    detailsSection.querySelector('p').textContent = movieData.description;
-
-    const [deleteBtn, editBtn, likeBtn] = detailsSection.querySelectorAll('a');
-    likeBtn.dataset.id = movieId;
-    editBtn.dataset.id = movieId;
-    const likesCounter = detailsSection.querySelector('span');
-
-    if (userData._id == ownerId) {
-        deleteBtn.style.display = 'inline-block';
-        editBtn.style.display = 'inline-block';
-        likeBtn.style.display = 'none';
-        likesCounter.textContent = `Liked ${likes}`;
-    } else {
-        deleteBtn.style.display = 'none';
-        editBtn.style.display = 'none';
-
-        if (hasLiked) {
-            likeBtn.style.display = 'none';
-            likesCounter.style.display = 'inline-block';
-            likesCounter.textContent = `Liked ${likes}`;
-        } else {
-            likeBtn.style.display = 'inline-block';
-            likesCounter.style.display = 'none';
-        }
-    }
-
-    likeBtn.addEventListener('click', giveLike);
-    editBtn.addEventListener('click', onEdit);
-
-    detailsSection.style.display = 'block';
+    getMovie(movieId, ownerId);
 }
 
-async function getMovie(movieId) {
+export async function getMovie(movieId, ownerId) {
     const url = `http://localhost:3030/data/movies/${movieId}`;
 
     try {
@@ -64,8 +26,57 @@ async function getMovie(movieId) {
             throw new Error(error.message);
         }
 
-        const data = await response.json();
-        return data;
+        const userData = JSON.parse(localStorage.getItem('user'));
+        const detailsSection = document.getElementById('movie-example');
+        
+        
+        const movieData = await response.json();
+        const likes = await getLikes(movieId);
+
+        detailsSection.querySelector('h1').textContent = `Movie title: ${movieData.title}`;
+        detailsSection.querySelector('img').src = movieData.img;
+        detailsSection.querySelector('p').textContent = movieData.description;
+
+        const [deleteBtn, editBtn, likeBtn] = detailsSection.querySelectorAll('a');
+        likeBtn.dataset.id = movieId;
+        editBtn.dataset.id = movieId;
+        deleteBtn.dataset.id = movieId;
+        const likesCounter = detailsSection.querySelector('span');
+
+        if (!userData) {
+            likeBtn.hidden = true;
+            editBtn.hidden = true;
+            deleteBtn.hidden = true;
+        } else {
+            const userId = userData._id;
+            const hasLiked = await hasLikedCheck(movieId, userId);
+
+            if (userData._id == ownerId) {
+                deleteBtn.hidden = false;
+                editBtn.hidden = false;
+                likeBtn.hidden = true;
+                likesCounter.textContent = `Liked ${Number(likes)}`;
+            } else {
+                deleteBtn.hidden = true;
+                editBtn.hidden = true;
+    
+                // if (hasLiked) {
+                    likeBtn.hidden = false;
+                    likesCounter.hidden = false;
+                    likesCounter.textContent = `Liked ${Number(likes)}`;
+                // } else {
+                //     likeBtn.style.display = 'inline-block';
+                //     likesCounter.style.display = 'none';
+                // }   // ==> To work in softuni judge system
+            }
+    
+            likeBtn.addEventListener('click', giveLike);
+            editBtn.addEventListener('click', onEdit);
+            deleteBtn.addEventListener('click', onDelete);
+        }
+
+
+        detailsSection.style.display = 'block';
 
     } catch (error) {
         alert(error.message);

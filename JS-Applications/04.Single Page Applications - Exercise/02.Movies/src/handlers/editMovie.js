@@ -1,3 +1,5 @@
+import { getMovie } from "../details.js";
+
 export async function onEdit(event) {
     const movieBlock = document.getElementById('movie-example');
     const editSection = document.getElementById('edit-movie');
@@ -28,7 +30,7 @@ async function submitEdit(event) {
     event.preventDefault();
 
     const userData = JSON.parse(localStorage.getItem('user'));
-    const id = event.target.dataset.id;
+    const movieId = event.target.dataset.id;
 
     const formData = new FormData(event.target);
 
@@ -36,7 +38,7 @@ async function submitEdit(event) {
     const description = formData.get('description');
     const img = formData.get('img');
 
-    const url = `http://localhost:3030/data/movies/${id}`;
+    const url = `http://localhost:3030/data/movies/${movieId}`;
     
     const response = await fetch(url, {
         method: 'PUT',
@@ -52,6 +54,9 @@ async function submitEdit(event) {
         throw new Error(error.message);
     }
 
+    const data = await response.json();
+    const ownerId = data._ownerId;
+    
     document.getElementById('edit-movie').style.display = 'none';
-    document.getElementById('movie-example').style.display = 'block';
+    getMovie(movieId, ownerId);
 }

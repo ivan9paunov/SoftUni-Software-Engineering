@@ -22,7 +22,7 @@ export async function giveLike(event) {
         }
         
         const targetSection = document.querySelector('#movie-example');
-        targetSection.querySelector('.btn-primary').style.display = 'none';
+        // targetSection.querySelector('.btn-primary').style.display = 'none';
         targetSection.querySelector('span').textContent = `Liked ${await getLikes(movieId)}`;
         targetSection.querySelector('span').style.display = 'inline-block';
 

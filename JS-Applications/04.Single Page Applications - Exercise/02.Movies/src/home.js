@@ -15,6 +15,7 @@ function showAddBtn() {
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
         addBtn.style.display = 'block';
+        addBtn.href = 'addMovies';
         addBtn.addEventListener('click', addMovie);
     }
 }

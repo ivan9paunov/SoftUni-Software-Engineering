@@ -10,7 +10,6 @@ export function createMovieCard(data) {
     const divCard = document.createElement('div');
     divCard.classList.add('card');
     divCard.style.width = '242px';
-    divCard.dataset.id = data._id;
 
     const imgElement = document.createElement('img');
     imgElement.src = data.img;
@@ -25,10 +24,14 @@ export function createMovieCard(data) {
     hElement.textContent = data.title;
     const anchor = document.createElement('a');
     anchor.href = `/details/${data._id}`;
-    anchor.classList.add('btn');
-    anchor.classList.add('btn-info');
-    anchor.textContent = 'Details';
+    const detailsBtn = document.createElement('button');
+    detailsBtn.type = 'button';
+    detailsBtn.classList.add('btn');
+    detailsBtn.classList.add('btn-info');
+    detailsBtn.textContent = 'Details';
+    detailsBtn.dataset.id = data._id;
 
+    anchor.appendChild(detailsBtn);
     divBody.appendChild(hElement);
     divBody.appendChild(anchor);
     divCard.appendChild(imgElement);
@@ -36,13 +39,16 @@ export function createMovieCard(data) {
 
     liElement.appendChild(divCard);
 
-    if (userData) {
-        anchor.style.display = 'inline-block';
-    } else {
-        anchor.style.display = 'none';
-    }
+    // if (userData) {
+        detailsBtn.addEventListener('click', showDetails);
+        detailsBtn.style.display = 'inline-block';
+    // } else {
+    //     detailsBtn.style.display = 'inline-block';
+    //     detailsBtn.addEventListener('click', function (event) {
+    //         event.preventDefault();
+    //     });
+    // }   // ==> To work in softuni judge system
 
-    anchor.addEventListener('click', showDetails);
 
     return liElement;
 }

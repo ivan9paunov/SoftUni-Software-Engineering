@@ -2,6 +2,8 @@ import { showRegisterSection } from "./register.js";
 import { showHomePage } from "./home.js";
 import { showLoginSection } from "./login.js";
 import { onLogout } from "./logout.js";
+import { getMovie } from "./details.js";
+import { addMovie } from "./addMovie.js";
 
 document.querySelectorAll('section').forEach(section => section.style.display = 'none');
 
@@ -18,7 +20,9 @@ const routes = {
     '/home': showHomePage,
     '/login': showLoginSection,
     '/register': showRegisterSection,
-    '/logout': onLogout
+    '/logout': onLogout,
+    '/addMovies': addMovie,
+    '/details/:id': getMovie
 };
 
 document.querySelector('nav').addEventListener('click', onNavigate);
