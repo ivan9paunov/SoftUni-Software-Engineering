@@ -44,30 +44,30 @@ export async function getMovie(movieId, ownerId) {
         const likesCounter = detailsSection.querySelector('span');
 
         if (!userData) {
-            likeBtn.hidden = true;
-            editBtn.hidden = true;
-            deleteBtn.hidden = true;
+            likeBtn.style.display = 'none';
+            editBtn.style.display = 'none';
+            deleteBtn.style.display = 'none';
         } else {
             const userId = userData._id;
             const hasLiked = await hasLikedCheck(movieId, userId);
 
             if (userData._id == ownerId) {
-                deleteBtn.hidden = false;
-                editBtn.hidden = false;
-                likeBtn.hidden = true;
+                deleteBtn.style.display = 'inline-block';
+                editBtn.style.display = 'inline-block';
+                likeBtn.style.display = 'none';
                 likesCounter.textContent = `Liked ${Number(likes)}`;
             } else {
-                deleteBtn.hidden = true;
-                editBtn.hidden = true;
+                deleteBtn.style.display = 'none';
+                editBtn.style.display = 'none';
     
                 // if (hasLiked) {
-                    likeBtn.hidden = false;
-                    likesCounter.hidden = false;
+                    likeBtn.style.display = 'inline-block';
+                    likesCounter.style.display = 'inline-block';
                     likesCounter.textContent = `Liked ${Number(likes)}`;
                 // } else {
                 //     likeBtn.style.display = 'inline-block';
                 //     likesCounter.style.display = 'none';
-                // }   // ==> To work in softuni judge system
+                // }
             }
     
             likeBtn.addEventListener('click', giveLike);

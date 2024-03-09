@@ -47,7 +47,7 @@ export function createMovieCard(data) {
     //     detailsBtn.addEventListener('click', function (event) {
     //         event.preventDefault();
     //     });
-    // }   // ==> To work in softuni judge system
+    // }
 
 
     return liElement;
