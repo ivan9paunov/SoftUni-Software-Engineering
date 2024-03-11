@@ -1,22 +1,18 @@
-import { homeView } from "./home.js";
+import { getTopics } from './load.js';
+import { getFormData} from './create.js';
 
-const homeBtn = document.querySelector('header a');
-homeBtn.href = '/home';
+const container = document.querySelector('.container');
+const main = document.querySelector('main');
 
-const routes = {
-    '/home': homeView
-};
+window.addEventListener('load', showHome);
+document.querySelector('a').addEventListener('click', showHome);
 
-homeBtn.addEventListener('click', onNavigate);
 
-function onNavigate(event) {
-    if (event.target.tagName !== 'A' || !event.target.href) {
-        return;
-    }
-    event.preventDefault();
-    const url = new URL(event.target.href);
-    const path = url.pathname;
-    routes[path]();
+const form = document.querySelector('form');
+form.addEventListener('submit', getFormData);
+
+function showHome() {
+   container.replaceChildren(main);
+
+    getTopics();
 }
-
-homeView();
