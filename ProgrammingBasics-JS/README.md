@@ -1,6 +1,6 @@
 ![ProgrammingBasics-JS](https://github.com/BoykoPetevBoev/Programming-Basics-January-2019/blob/master/_README/ProgrammingBasics.jpg)
 
-![Image Not Found](Programming%20Basics%20-%20May%202023%20-%20Certificate.pdf)
+![Image Not Found](https://softuni.bg/Certificates/Details/175020/6fbc117a)
 
 ---
 
