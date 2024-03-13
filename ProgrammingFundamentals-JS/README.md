@@ -1,6 +1,7 @@
 ![ProgrammingFundamentals-JS](https://github.com/BoykoPetevBoev/JS-Fundamentals-May-2019/blob/master/_README/ProgrammingFundamentals.jpg)
 
-![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/ProgrammingBasics-JS/Programming%20Fundamentals%20with%20JavaScript%20-%20September%202023%20-%20Certificate.jpeg)
+![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/ProgrammingFundamentals-JS/Programming%20Fundamentals%20with%20JavaScript%20-%20September%202023%20-%20Certificate.jpeg
+)
 
 ---
 
