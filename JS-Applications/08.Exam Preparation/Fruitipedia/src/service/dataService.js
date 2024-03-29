@@ -7,7 +7,9 @@ const endpoints = {
     allItems: '/fruits?sortBy=_createdOn%20desc',
     myItem: (id) => `/fruits/${id}`,
     // Adapt next ones to your BONUS task
-    search: (query) => `/fruits?where=name%20LIKE%20%22${query}%22`
+    search: (query) => `/fruits?where=name%20LIKE%20%22${query}%22`,
+    paginate: (page, pageSize) => `/fruits?offset=${(page - 1) * pageSize}&pageSize=${pageSize}`,
+    count: '/fruits?count'
 };
 
 async function createItem(data) {
@@ -40,6 +42,14 @@ async function doTheSearch(query) {
     }
 }
 
+async function pagination(page, size) {
+    return await get(BASE_URL + endpoints.paginate(page, size));
+}
+
+async function totalItems() {
+    return await get(BASE_URL + endpoints.count);
+}
+
 export const dataService = {
     createItem,
     getAllItems,
@@ -47,5 +57,7 @@ export const dataService = {
     editItem,
     deleteItem,
     // Adapt next ones to your BONUS task
-    doTheSearch
+    doTheSearch,
+    pagination,
+    totalItems
 };
