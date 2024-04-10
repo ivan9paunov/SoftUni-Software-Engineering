@@ -21,7 +21,7 @@ class BankAccount {
         }
     }
 
-    create(): void {
+    createAccount(): void {
         this.id++;
         this.accounts[this.id] = this.ballance;
         console.log(`Account ID${this.id} created`);
@@ -42,8 +42,8 @@ function bankAccount(commands: string[]) {
     
     for (let command of commands) {
         if (command == 'Create') {
-            myBank.create();
-            
+            myBank.createAccount();
+
         } else if (command.includes('Deposit')) {
             const [_, idAsStr, amountAsStr] = command.split(' ');
             const id: number = Number(idAsStr);
@@ -76,7 +76,9 @@ bankAccount([
     'GetInterest 1 10',
     'End'
 ]);
+
 console.log('---');
+
 bankAccount([
     'Create',
     'Create',

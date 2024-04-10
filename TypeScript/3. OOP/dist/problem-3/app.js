@@ -17,7 +17,7 @@ class BankAccount {
             console.log('Account does not exist');
         }
     }
-    create() {
+    createAccount() {
         this.id++;
         this.accounts[this.id] = this.ballance;
         console.log(`Account ID${this.id} created`);
@@ -36,7 +36,7 @@ function bankAccount(commands) {
     const myBank = new BankAccount();
     for (let command of commands) {
         if (command == 'Create') {
-            myBank.create();
+            myBank.createAccount();
         }
         else if (command.includes('Deposit')) {
             const [_, idAsStr, amountAsStr] = command.split(' ');
