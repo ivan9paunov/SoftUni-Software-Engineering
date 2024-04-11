@@ -1,29 +1,6 @@
-type Departments = {
-    [name: string]: DepartmentModel;
-}
-
-type DepartmentModel = {
-    averageSalary: number;
-    totalSalary: number;
-    employees: EmployeesModel[];
-}
-
-type EmployeesModel = {
-    name: string;
-    salary: number;
-    email: string;
-    age: number;
-}
-
+"use strict";
 class Employee {
-    name: string;
-    salary: number;
-    position: string;
-    department: string;
-    email: string;
-    age: number;
-
-    constructor(name: string, salary: number, position: string, department: string, email: string, age: number) {
+    constructor(name, salary, position, department, email, age) {
         this.name = name;
         this.salary = salary;
         this.position = position;
@@ -32,74 +9,63 @@ class Employee {
         this.age = age;
     }
 }
-
 class Department {
-    private departments: Departments = {};
-
-    addEmployee(department: string, name: string, salary: number, email: string, age: number): void {
+    constructor() {
+        this.departments = {};
+    }
+    addEmployee(department, name, salary, email, age) {
         if (!this.departments.hasOwnProperty(department)) {
             this.departments[department] = { employees: [], totalSalary: 0, averageSalary: 0 };
         }
-
         this.departments[department].employees.push({ name: name, salary: salary, email: email, age: age });
         this.departments[department].totalSalary += salary;
         this.departments[department].averageSalary = this.departments[department].totalSalary / this.departments[department].employees.length;
     }
-
-    private sortDepartments(): [string, DepartmentModel] {
+    sortDepartments() {
         const departmentKVPs = Object.entries(this.departments);
         departmentKVPs.sort((a, b) => b[1].averageSalary - a[1].averageSalary);
         const bestDepartment = departmentKVPs[0];
         return bestDepartment;
     }
-
-    getHighestAvgSalary(): void {
+    getHighestAvgSalary() {
         const bestDepartment = this.sortDepartments();
-        const departmentName: string = bestDepartment[0];
+        const departmentName = bestDepartment[0];
         console.log(`Highest Average Salary: ${departmentName}`);
     }
-
-    getBestEmployees(): void {
+    getBestEmployees() {
         const bestDepartment = this.sortDepartments();
         const employees = bestDepartment[1].employees;
         employees.sort((a, b) => b.salary - a.salary);
-        
         employees.forEach(employee => console.log(`${employee.name} ${(employee.salary).toFixed(2)} ${employee.email} ${employee.age}`));
     }
 }
-
-function companyRoster(inputArray: string[]): void {
-    const employees: number = Number(inputArray.shift());
-    const pattern: RegExp = /^\w+@[a-z]+\.[a-z]+$/;
-
+function companyRoster(inputArray) {
+    const employees = Number(inputArray.shift());
+    const pattern = /^\w+@[a-z]+\.[a-z]+$/;
     const myDepartments = new Department();
-
     for (const person of inputArray) {
         let [name, salaryAsStr, position, department, email, ageAsStr] = person.split(' ');
-        const salary: number = Number(salaryAsStr);
-        let age: number;
-
+        const salary = Number(salaryAsStr);
+        let age;
         if (email != undefined && !pattern.test(email)) {
             ageAsStr = email;
             email = 'n/a';
-        } else if (email == undefined) {
+        }
+        else if (email == undefined) {
             email = 'n/a';
         }
-
         if (ageAsStr == undefined) {
             age = -1;
-        } else {
+        }
+        else {
             age = Number(ageAsStr);
         }
-
         const employee = new Employee(name, salary, position, department, email, age);
         myDepartments.addEmployee(employee.department, employee.name, employee.salary, employee.email, employee.age);
     }
-
     myDepartments.getHighestAvgSalary();
     myDepartments.getBestEmployees();
 }
-
 companyRoster([
     '4',
     'Peter 120.00 Dev Development peter@abv.bg 28',
@@ -107,9 +73,7 @@ companyRoster([
     'Sam 840.20 ProjectLeader Development sam@sam.com',
     'George 0.20 Freeloader Nowhere 18'
 ]);
-
 console.log('---');
-
 companyRoster([
     '6',
     'Silver 496.37 Temp Coding silver@yahoo.com',
