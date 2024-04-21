@@ -9,3 +9,12 @@
 - Работа с класове, интерфейси и generics
 - Запознаване с модули и декоратори
 - Изграждане на цялостни приложения с TypeScript 
+
+## Теми
+
+- Introduction to TypeScript
+- Advanced Data Types and Interfaces
+- OOP
+- Generics
+- Namespaces and Modules
+- Decorators
