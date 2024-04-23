@@ -5,7 +5,7 @@ const towns = (arr: string[]): void => {
         longitude: number
     }
 
-    let townsCatalog: object[] = [];
+    let townsCatalog: TownsData[] = [];
 
     for (let town of arr) {
         const [name, lat, lon] = town.split(' | ');
