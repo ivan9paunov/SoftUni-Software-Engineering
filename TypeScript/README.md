@@ -1,4 +1,4 @@
-![TypeScript](https://github.com/ivan9paunov/SoftUni-Software-Engineering/TypeScript/headerIMG.jpeg)
+![TypeScript](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/TypeScript/headerIMG.jpg)
 
 ## За курса
 
