@@ -1,5 +1,8 @@
-type Departments = {
-    [name: string]: DepartmentModel;
+interface EmployeesModel {
+    name: string;
+    salary: number;
+    email: string;
+    age: number;
 }
 
 type DepartmentModel = {
@@ -8,14 +11,11 @@ type DepartmentModel = {
     employees: EmployeesModel[];
 }
 
-type EmployeesModel = {
-    name: string;
-    salary: number;
-    email: string;
-    age: number;
+type Departments = {
+    [name: string]: DepartmentModel;
 }
 
-class Employee {
+class Employee implements EmployeesModel {
     name: string;
     salary: number;
     position: string;
@@ -36,14 +36,14 @@ class Employee {
 class Department {
     private departments: Departments = {};
 
-    addEmployee(department: string, name: string, salary: number, email: string, age: number): void {
-        if (!this.departments.hasOwnProperty(department)) {
-            this.departments[department] = { employees: [], totalSalary: 0, averageSalary: 0 };
+    addEmployee(employee: Employee): void {
+        if (!this.departments.hasOwnProperty(employee.department)) {
+            this.departments[employee.department] = { employees: [], totalSalary: 0, averageSalary: 0 };
         }
 
-        this.departments[department].employees.push({ name: name, salary: salary, email: email, age: age });
-        this.departments[department].totalSalary += salary;
-        this.departments[department].averageSalary = this.departments[department].totalSalary / this.departments[department].employees.length;
+        this.departments[employee.department].employees.push({ name: employee.name, salary: employee.salary, email: employee.email, age: employee.age });
+        this.departments[employee.department].totalSalary += employee.salary;
+        this.departments[employee.department].averageSalary = this.departments[employee.department].totalSalary / this.departments[employee.department].employees.length;
     }
 
     private sortDepartments(): [string, DepartmentModel] {
@@ -93,7 +93,7 @@ function companyRoster(inputArray: string[]): void {
         }
 
         const employee = new Employee(name, salary, position, department, email, age);
-        myDepartments.addEmployee(employee.department, employee.name, employee.salary, employee.email, employee.age);
+        myDepartments.addEmployee(employee);
     }
 
     myDepartments.getHighestAvgSalary();
