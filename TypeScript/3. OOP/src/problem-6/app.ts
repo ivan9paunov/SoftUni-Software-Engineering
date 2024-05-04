@@ -1,3 +1,18 @@
+interface Pokemons {
+    name: string;
+    element: string;
+    health: number;
+}
+
+type TrainerCollection = {
+    badges: number;
+    collection: Pokemons[];
+}
+
+type Trainers = {
+    [name: string]: TrainerCollection;
+}
+
 class Trainer {
     name: string;
     badges: number = 0;
@@ -9,7 +24,7 @@ class Trainer {
     }
 }
 
-class Pokemon {
+class Pokemon implements Pokemons {
     name: string;
     element: string;
     health: number;
@@ -21,21 +36,6 @@ class Pokemon {
     }
 }
 
-type Trainers = {
-    [name: string]: TrainerCollection;
-}
-
-type TrainerCollection = {
-    badges: number;
-    collection: Pokemons[];
-}
-
-type Pokemons = {
-    name: string;
-    element: string;
-    health: number;
-}
-
 function pokemonTrainer(arr: string[]): void {
     const trainers: Trainers = {};
 
@@ -43,17 +43,16 @@ function pokemonTrainer(arr: string[]): void {
 
     while (command != 'Tournament') {
         if (command != undefined) {
-            const [trainer, pokemonName, element, healthAsStr] = command.split(' ');
-            const health: number = Number(healthAsStr);
+            const [trainer, pokemonName, element, health] = command.split(' ');
 
-            const myPokemon = new Pokemon(pokemonName, element, health);
+            const myPokemon = new Pokemon(pokemonName, element, Number(health));
 
             if (trainers.hasOwnProperty(trainer)) {
-                trainers[trainer].collection.push({ name: myPokemon.name, element: myPokemon.element, health: myPokemon.health });
+                trainers[trainer].collection.push(myPokemon);
             } else {
                 trainers[trainer] = {
                     badges: 0,
-                    collection: [{ name: myPokemon.name, element: myPokemon.element, health: myPokemon.health }]
+                    collection: [myPokemon]
                 };
             }
         }
@@ -79,7 +78,7 @@ function pokemonTrainer(arr: string[]): void {
                 const collection = trainers[trainer].collection;
 
                 for (let i = 0; i < collection.length; i++) {
-                    let pokemon = collection[i];
+                    const pokemon = collection[i];
                     pokemon.health -= 10;
 
                     if (pokemon.health <= 0) {
@@ -96,7 +95,7 @@ function pokemonTrainer(arr: string[]): void {
         Object.entries(trainers)
         .sort((a, b) => b[1].badges - a[1].badges);
 
-    for (let trainer of sortedTrainers) {
+    for (const trainer of sortedTrainers) {
         console.log(`${trainer[0]} ${trainer[1].badges} ${trainer[1].collection.length}`);
     }
 }

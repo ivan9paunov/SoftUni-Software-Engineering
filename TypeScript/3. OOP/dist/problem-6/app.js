@@ -18,16 +18,15 @@ function pokemonTrainer(arr) {
     let command = arr.shift();
     while (command != 'Tournament') {
         if (command != undefined) {
-            const [trainer, pokemonName, element, healthAsStr] = command.split(' ');
-            const health = Number(healthAsStr);
-            const myPokemon = new Pokemon(pokemonName, element, health);
+            const [trainer, pokemonName, element, health] = command.split(' ');
+            const myPokemon = new Pokemon(pokemonName, element, Number(health));
             if (trainers.hasOwnProperty(trainer)) {
-                trainers[trainer].collection.push({ name: myPokemon.name, element: myPokemon.element, health: myPokemon.health });
+                trainers[trainer].collection.push(myPokemon);
             }
             else {
                 trainers[trainer] = {
                     badges: 0,
-                    collection: [{ name: myPokemon.name, element: myPokemon.element, health: myPokemon.health }]
+                    collection: [myPokemon]
                 };
             }
         }
@@ -47,7 +46,7 @@ function pokemonTrainer(arr) {
             if (notApply) {
                 const collection = trainers[trainer].collection;
                 for (let i = 0; i < collection.length; i++) {
-                    let pokemon = collection[i];
+                    const pokemon = collection[i];
                     pokemon.health -= 10;
                     if (pokemon.health <= 0) {
                         collection.splice(i, 1);
@@ -59,7 +58,7 @@ function pokemonTrainer(arr) {
     }
     const sortedTrainers = Object.entries(trainers)
         .sort((a, b) => b[1].badges - a[1].badges);
-    for (let trainer of sortedTrainers) {
+    for (const trainer of sortedTrainers) {
         console.log(`${trainer[0]} ${trainer[1].badges} ${trainer[1].collection.length}`);
     }
 }
