@@ -14,9 +14,28 @@
 
 ## Теми
 
-- Introduction to TypeScript
-- Advanced Data Types and Interfaces
-- OOP
-- Generics
-- Namespaces and Modules
-- Decorators
+* Introduction to TypeScript
+    * Setup
+    * Basic Types
+    * Debugging
+* Advanced Data Types and Interfaces
+    * Advanced Typing
+    * Interfaces
+    * Types vs Interfaces
+* OOP
+    * Principles of OOP
+    * Classes, Properties
+	* Methods
+    * Access Modifiers
+* Generics
+    * Design Patterns
+    * Generics Definition
+    * Generics Use Cases
+* Namespaces and Modules
+    * Namespaces & Multiple Files
+    * Imports
+    * Modules & Loading Modules
+* Decorators
+    * Class, Method Property & Parameter Decorators
+    * Decorator Factories
+	* Decorator Composition
