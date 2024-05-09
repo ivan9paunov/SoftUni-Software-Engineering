@@ -1,45 +1,23 @@
-interface Dealership<T> {
-    dealershipName: T,
-    soldCars: number
-}
-
-interface Actions<T> {
-    sellCar(dealerID: T, model: T): void
-}
-
-type ModelsSold = {
-    [key: string]: string;
-}
-
-class CarDealership implements Dealership<string>, Actions<string> {
-    dealershipName: string;
-    soldCars: number;
-    modelsSold: ModelsSold;
-
-    constructor(dealershipName: string) {
+"use strict";
+class CarDealership {
+    constructor(dealershipName) {
         this.dealershipName = dealershipName;
         this.soldCars = 0;
-        this.modelsSold = {}
+        this.modelsSold = {};
     }
-
-    sellCar(dealerID: string, model: string): void {
+    sellCar(dealerID, model) {
         this.soldCars++;
         this.modelsSold[dealerID] = model;
     }
-
-    showDetails(): string {
-        const carsSold: string[] = [];
-
+    showDetails() {
+        const carsSold = [];
         for (const element in this.modelsSold) {
             carsSold.push(`${element} sold ${this.modelsSold[element]}`);
         }
-
         return `${this.dealershipName}:\n${carsSold.join('\n')}`;
     }
 }
-
 let dealership = new CarDealership('SilverStar');
-
 dealership.sellCar('BG01', 'C Class');
 dealership.sellCar('BG02', 'S Class');
 dealership.sellCar('BG03', 'ML Class');
