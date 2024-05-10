@@ -3,26 +3,28 @@ interface Dealership<T> {
     soldCars: number
 }
 
+type MyKeyType = string | symbol | number;
+
+type ModelsSold<T> = {
+    [key: MyKeyType]: T;
+}
+
 interface Actions<T> {
-    sellCar(dealerID: T, model: T): void
+    sellCar(dealerID: MyKeyType, model: T): void
 }
 
-type ModelsSold = {
-    [key: string]: string;
-}
-
-class CarDealership implements Dealership<string>, Actions<string> {
-    dealershipName: string;
+class CarDealership<T, U> implements Dealership<T>, Actions<U> {
+    dealershipName: T;
     soldCars: number;
-    modelsSold: ModelsSold;
+    modelsSold: ModelsSold<U>;
 
-    constructor(dealershipName: string) {
+    constructor(dealershipName: T) {
         this.dealershipName = dealershipName;
         this.soldCars = 0;
-        this.modelsSold = {}
+        this.modelsSold = {};
     }
 
-    sellCar(dealerID: string, model: string): void {
+    sellCar(dealerID: MyKeyType, model: U): void {
         this.soldCars++;
         this.modelsSold[dealerID] = model;
     }
@@ -38,7 +40,7 @@ class CarDealership implements Dealership<string>, Actions<string> {
     }
 }
 
-let dealership = new CarDealership('SilverStar');
+let dealership = new CarDealership<string, string>('SilverStar');
 
 dealership.sellCar('BG01', 'C Class');
 dealership.sellCar('BG02', 'S Class');
