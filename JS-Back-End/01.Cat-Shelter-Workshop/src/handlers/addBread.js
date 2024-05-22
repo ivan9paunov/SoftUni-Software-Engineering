@@ -1,7 +1,7 @@
-const { readFile } = require('../util.js');
+const { readTemplate } = require('../util.js');
 
-function addBreedHandler(req, res) {
-    const template = readFile('./views/addBreed.html');
+async function addBreedHandler(req, res) {
+    const template = await readTemplate('addBreed');
     res.writeHead(200, [
         'Content-Type', 'text/html'
     ]);

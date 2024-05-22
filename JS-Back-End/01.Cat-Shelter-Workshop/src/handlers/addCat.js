@@ -1,7 +1,7 @@
-const { readFile } = require('../util.js');
+const { readTemplate } = require('../util.js');
 
-function addCatHandler(req, res) {
-    const template = readFile('./views/addCat.html');
+async function addCatHandler(req, res) {
+    const template = await readTemplate('addCat');
     res.writeHead(200, [
         'Content-Type', 'text/html'
     ]);
