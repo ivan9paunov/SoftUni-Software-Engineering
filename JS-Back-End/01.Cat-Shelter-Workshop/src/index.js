@@ -3,7 +3,7 @@ const http = require('http');
 const { homeHandler } = require('./handlers/home.js');
 const { staticFileHandler } = require('./handlers/static.js');
 const { addBreedHandler, postBreedHandler } = require('./handlers/addBread.js');
-const { addCatHandler } = require('./handlers/addCat.js');
+const { addCatHandler, postCatHandler } = require('./handlers/addCat.js');
 
 const routes = {
     'GET': {
@@ -14,13 +14,13 @@ const routes = {
     },
     'POST': {
         '/cats/add-breed': postBreedHandler,
-        // '/cats/add-cat': 
+        '/cats/add-cat': postCatHandler
     }
 };
 
 http.createServer((req, res) => {
     const methodRoutes = routes[req.method];
-
+    
     if (methodRoutes) {
         const route = methodRoutes[req.url];
 
