@@ -28,7 +28,7 @@ async function postCatHandler(req, res) {
         const name = fields.name[0];
         const description = fields.description[0];
         const breed = fields.breed[0];
-        const id = fileContent.length + 1;
+        const id = fileContent[fileContent.length - 1].id + 1;
         let imgFile = '';
         let imgPath = '';
         
