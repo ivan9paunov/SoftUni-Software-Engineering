@@ -1,5 +1,4 @@
-const fs = require('fs');
-const fsp = require('fs/promises');
+const fs = require('fs/promises');
 const path = require('path');
 
 const searchBar = `
@@ -9,12 +8,12 @@ const searchBar = `
     </form>`;
 
 async function readFile(filePath) {
-    const fileHandle = await fsp.open(path.join('./', filePath), 'r');
+    const fileHandle = await fs.open(path.join('./', filePath), 'r');
     return fileHandle.createReadStream();
 }
 
 async function readTemplate(template) {
-    const data = await fsp.readFile(path.join('./views/', template + '.html'));
+    const data = await fs.readFile(path.join('./views/', template + '.html'));
     return data.toString();
 }
 
@@ -30,24 +29,8 @@ async function layout(body, hasSearch) {
     return layoutTemplate.replace('%%body%%', body);
 }
 
-function readImg(url) {
-    const img = fs.readFileSync(url);
-    return Buffer.from(img);
-}
-
-async function addImg(imgName, buffer) {
-    await fsp.writeFile(path.join('content', 'images', imgName), buffer);
-}
-
-async function delImg(imgUrl) {
-    await fsp.unlink(imgUrl.replace('\\', ''));
-}
-
 module.exports = {
     readFile,
     readTemplate,
-    layout,
-    readImg,
-    addImg,
-    delImg
+    layout
 };

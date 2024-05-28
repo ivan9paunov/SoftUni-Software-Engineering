@@ -1,24 +1,30 @@
 {
   "cats": [
     {
-      "id": 1,
+      "id": 9069682167,
       "name": "Roger",
       "imageUrl": "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
       "breed": "Bombay Cat",
       "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
     },
     {
-      "id": 2,
+      "id": 7349309297,
       "name": "Pretty Kitty",
       "imageUrl": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
       "breed": "Bombay Cat",
       "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+    },
+    {
+      "id": 1813723839,
+      "name": "Mimi",
+      "imageUrl": "https://www.allthebestpetcare.com/wp-content/uploads/2021/10/cbd-oil-cat-anxiety-300x300.jpg",
+      "breed": "Maine Coon",
+      "description": "Pretty Cat"
     }
   ],
   "breeds": [
     "Bombay Cat",
     "Orange Tabby",
-    "Maine Coon",
-    "Siamska"
+    "Maine Coon"
   ]
 }

@@ -1,7 +1,5 @@
-const { getBreeds, getCats, addCat } = require('../model.js');
-const { readTemplate, layout, readImg, addImg } = require('../util.js');
-const formidable = require('formidable');
-const path = require('path');
+const { getBreeds, addCat } = require('../model.js');
+const { readTemplate, layout } = require('../util.js');
 
 function breedFragment(breed) {
     return `<option value="${breed}">${breed}</option>`;
@@ -21,35 +19,32 @@ async function addCatHandler(req, res) {
 }
 
 async function postCatHandler(req, res) {
-    const fileContent = await getCats();
-    const form = new formidable.IncomingForm();
+    let data = '';
 
-    form.parse(req, (err, fields, files) => {
-        const name = fields.name[0];
-        const description = fields.description[0];
-        const breed = fields.breed[0];
-        const id = fileContent[fileContent.length - 1].id + 1;
-        let imgFile = '';
-        let imgPath = '';
-        
-        if (Object.keys(files).length > 0) {
-            imgFile = files.upload[0];
-            const imgBuffer = readImg(imgFile.filepath);
-            const imgName = imgFile.originalFilename;
-            addImg(imgName, imgBuffer);
-            imgPath = path.join('\\content', 'images', imgName);
-        }
+    req.on('data', (chunk) => data += chunk);
+    req.on('end', async () => {
+        const formData = new URLSearchParams(data);
+        const name = formData.get('name');
+        const description = formData.get('description');
+        const imageUrl = formData.get('imageUrl');
+        const breed = formData.get('breed');
 
-        if (name && description && id) {
-            const newCat = { name, imageUrl: imgPath, breed, description, id: String(id)};
-            addCat(newCat);
+        if (name && description && imageUrl && breed) {
+            const id = Math.floor(Math.random() * 10000000000);
+
+            await addCat({ id, name, imageUrl, breed, description });
+
+            res.writeHead(301, [
+                'Location', '/'
+            ]);
+            res.end();
+        } else {
+            res.writeHead(301, [
+                'Location', '/cats/add-cat'
+            ]);
+            res.end();
         }
     });
-    
-    res.writeHead(302, [
-        'Location', '/'
-    ]);
-    res.end();
 }
 
 module.exports = {
