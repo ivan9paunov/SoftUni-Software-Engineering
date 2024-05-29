@@ -41,5 +41,7 @@ module.exports = {
     getCats,
     addCat,
     getBreeds,
-    addBreed
+    addBreed,
+    readData,
+    writeData
 };

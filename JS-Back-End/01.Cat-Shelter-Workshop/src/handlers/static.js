@@ -5,7 +5,7 @@ function staticFileHandler(req, res) {
         sendFile(req.url, 'text/css', res);
         return true;
     } else if (req.url.endsWith('.ico')) {
-        readFile(req.url, 'image/svg+xml', res);
+        sendFile(req.url, 'image/svg+xml', res);
         return true;
     }
 
