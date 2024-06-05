@@ -1,5 +1,6 @@
 module.exports = {
     about: (req, res) => {
-        res.render('about');
+        const title = 'About us';
+        res.render('about', { title });
     }
 };
