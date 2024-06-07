@@ -1,9 +1,9 @@
 const { createMovie } = require('../services/movie.js');
-const title = 'Create Movie';
+const headerTitle = 'Create Movie';
 
 module.exports = {
     getCreate: (req, res) => {
-        res.render('create', { title });
+        res.render('create', { headerTitle });
     },
     postCreate: async (req, res) => {
         const errors = {
@@ -17,7 +17,7 @@ module.exports = {
         };
 
         if (Object.values(errors).includes(true)) {
-            res.render('create', { movie: req.body, errors, title });
+            res.render('create', { movie: req.body, errors, headerTitle });
             return;
         }
 
