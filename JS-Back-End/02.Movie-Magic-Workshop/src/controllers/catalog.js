@@ -2,13 +2,13 @@ const { getAllMovies, getMovieById, filterMovies } = require('../services/movie.
 
 module.exports = {
     home: async (req, res) => {
-        const title = 'Movie Catalog';
+        const headerTitle = 'Movie Catalog';
         const movies = await getAllMovies();
 
-        res.render('home', { movies, title });
+        res.render('home', { movies, headerTitle });
     },
     details: async (req, res) => {
-        const title = 'Movie Details';
+        const headerTitle = 'Movie Details';
         const id = req.params.id;
         const movie = await getMovieById(id);
 
@@ -19,19 +19,13 @@ module.exports = {
 
         movie.starRating = '&#x2605;'.repeat(movie.rating);
 
-        res.render('details', { movie, title });
+        res.render('details', { movie, headerTitle });
     },
     search: async (req, res) => {
-        const title = 'Search Movie';
-        let movies = await getAllMovies();
-        const queries = req.query;
+        const headerTitle = 'Search Movie';
+        const { title, genre, year } = req.query;
+        const movies = await filterMovies(title, genre, year);
 
-        if (Object.keys(req.query) == 0 || (!queries.title && !queries.genre && !queries.year)) {
-            res.render('search', { movies, title });
-            return;
-        }
-
-        movies = await filterMovies(queries);
-        res.render('search', { movies, title });
+        res.render('search', { movies, title, genre, year, headerTitle });
     }
 };

@@ -66,25 +66,20 @@ function uuid() {
     return 'xxxxxxxxxxxxxxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
 }
 
-async function filterMovies(queries) {
+async function filterMovies(title, genre, year) {
     let movies = await readFile();
 
-    queries = Object.fromEntries(Object.entries(queries).filter(([key, value]) => value));
-    
-    movies = movies.filter(movie => {
-        let match = true;
-        
-        Object.entries(queries).forEach(([key, val]) => {
-            const movieValue = String(movie[key]).toLowerCase();
-            const queryValue = String(val).toLowerCase();
+    if (title) {
+        movies = movies.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()));
+    }
 
-            if (!movieValue.includes(queryValue)) {
-                match = false;
-            }
-        });
-        
-        return match;
-    });
+    if (genre) {
+        movies = movies.filter(movie => movie.genre.toLowerCase() == genre.toLowerCase());
+    }
+
+    if (year) {
+        movies = movies.filter(movie => String(movie.year).toLowerCase() == String(year).toLowerCase());
+    }
     
     return movies;
 }
