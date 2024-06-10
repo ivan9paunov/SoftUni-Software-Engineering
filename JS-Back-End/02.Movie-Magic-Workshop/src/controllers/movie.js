@@ -2,10 +2,10 @@ const { createMovie } = require('../services/movie.js');
 const headerTitle = 'Create Movie';
 
 module.exports = {
-    getCreate: (req, res) => {
+    getCreateMovie: (req, res) => {
         res.render('create', { headerTitle });
     },
-    postCreate: async (req, res) => {
+    postCreateMovie: async (req, res) => {
         const errors = {
             title: !req.body.title,
             genre: !req.body.genre,
@@ -23,6 +23,6 @@ module.exports = {
 
         const result = await createMovie(req.body);
 
-        res.redirect('/details/' + result.id);
+        res.redirect('/details/' + result._id);
     }
 };
