@@ -1,3 +1,4 @@
+const { createToken } = require('../services/token.js');
 const { register } = require('../services/user.js');
 
 module.exports = {
@@ -17,7 +18,10 @@ module.exports = {
             }
 
             const user = await register(email, password);
-        
+            const token = createToken(user);
+
+            res.cookie('token', token, { httpOnly: true });
+
             res.redirect('/');
 
         } catch (err) {

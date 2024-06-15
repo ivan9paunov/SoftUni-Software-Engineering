@@ -2,6 +2,8 @@ const { getAllMovies, getMovieById, filterMovies } = require('../services/movie.
 
 module.exports = {
     home: async (req, res) => {
+        console.log(req.user);
+        
         const headerTitle = 'Movie Catalog';
         const movies = await getAllMovies();
 
