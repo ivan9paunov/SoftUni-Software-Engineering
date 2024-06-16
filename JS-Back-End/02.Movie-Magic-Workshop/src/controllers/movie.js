@@ -1,4 +1,4 @@
-const { createMovie, getMovieById, updateMovie } = require('../services/movie.js');
+const { createMovie, getMovieById, updateMovie, deleteMovie } = require('../services/movie.js');
 
 module.exports = {
     getCreateMovie: (req, res) => {
@@ -82,5 +82,47 @@ module.exports = {
         }
 
         res.redirect('/details/' + movieId);
+    },
+    getDelete: async (req, res) => {
+        const movieId = req.params.id;
+        let movie;
+
+        try {
+            movie = await getMovieById(movieId);
+
+            if (!movie) {
+                throw new Error('Movie not found!');
+            }
+        } catch (err) {
+            res.render('404', { headerTitle: 'Page Not Found' });
+            return;
+        }
+
+        const isAuthor = req.user._id == movie.author.toString();
+
+        if (!isAuthor) {
+            res.redirect('/login');
+            return;
+        }
+
+        res.render('delete', { movie, headerTitle: 'Delete Movie' });
+    },
+    postDelete: async (req, res) => {
+        const movieId = req.params.id;
+        const authorId = req.user._id;
+
+        try {
+            await deleteMovie(movieId, authorId);
+        } catch (err) {
+            if (err.message == 'Access denied!') {
+                res.redirect('/login');
+            } else {
+                res.render('404');
+            }
+
+            return;
+        }
+
+        res.redirect('/');
     }
 };

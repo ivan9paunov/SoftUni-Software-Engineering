@@ -4,7 +4,7 @@ const { isGuest, isUser } = require('../middlewares/guards.js');
 
 const { home, details, search } = require('../controllers/catalog.js');
 const { about } = require('../controllers/about.js');
-const { getCreateMovie, postCreateMovie, getEditMovie, postEditMovie } = require('../controllers/movie.js');
+const { getCreateMovie, postCreateMovie, getEditMovie, postEditMovie, getDelete, postDelete } = require('../controllers/movie.js');
 const { getCreateCast, postCreateCast } = require('../controllers/cast.js');
 const { notFound } = require('../controllers/404.js');
 const { getAttach, postAttach } = require('../controllers/attach.js');
@@ -21,6 +21,8 @@ router.get('/attach/:id', isUser(), getAttach);
 router.post('/attach/:id', isUser(), postAttach);
 router.get('/edit/:id', isUser(), getEditMovie);
 router.post('/edit/:id', isUser(), postEditMovie);
+router.get('/delete/:id', isUser(), getDelete);
+router.post('/delete/:id', isUser(), postDelete);
 
 router.get('/create/movie', isUser(), getCreateMovie);
 router.post('/create/movie', isUser(), postCreateMovie);
