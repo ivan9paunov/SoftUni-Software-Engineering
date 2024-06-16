@@ -10,16 +10,41 @@ async function getMovieById(id) {
     return movie;
 }
 
-async function createMovie(movieData) {
-    const movie = new Movie ({
+async function createMovie(movieData, authorId) {
+    const movie = new Movie({
         title: movieData.title,
         genre: movieData.genre,
         director: movieData.director,
         year: Number(movieData.year),
         imageURL: movieData.imageURL,
         rating: Number(movieData.rating),
-        description: movieData.description
+        description: movieData.description,
+        author: authorId
     });
+
+    await movie.save();
+
+    return movie;
+}
+
+async function updateMovie(movieId, movieData, authorId) {
+    const movie = await Movie.findById(movieId);
+
+    if (!movie) {
+        throw new Error(`Movie ${movieId} not found!`);
+    }
+
+    if (movie.author.toString() != authorId) {
+        throw new Error('Access denied!');
+    }
+
+    movie.title = movieData.title;
+    movie.genre = movieData.genre;
+    movie.director = movieData.director;
+    movie.year = movieData.year;
+    movie.imageURL = movieData.imageURL;
+    movie.rating = movieData.rating;
+    movie.description = movieData.description;
 
     await movie.save();
 
@@ -40,7 +65,7 @@ async function filterMovies(title, genre, year) {
     if (year) {
         movies = movies.filter(movie => String(movie.year).toLowerCase() == String(year).toLowerCase());
     }
-    
+
     return movies;
 }
 
@@ -50,7 +75,7 @@ async function attachCastToMovie(movieId, castId) {
     if (!movie) {
         throw new Error(`Movie ${movieId} not found!`);
     }
-    
+
     movie.cast.push(castId);
 
     await movie.save();
@@ -63,5 +88,6 @@ module.exports = {
     getMovieById,
     createMovie,
     filterMovies,
-    attachCastToMovie
+    attachCastToMovie,
+    updateMovie
 };
