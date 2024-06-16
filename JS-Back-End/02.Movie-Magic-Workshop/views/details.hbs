@@ -20,6 +20,12 @@
 
                 <p class="disc">Description: {{description}}</p>
             </div>
+            {{#if isAuthor}}
+            <div class="details-btn">
+                <a id="edit-button" href="#">Edit</a>
+                <a id="delete-button" href="#">Delete</a>
+            </div>
+            {{/if}}
         </div>
         <div class="card_right">
             <img src="{{imageURL}}" alt="image">
@@ -27,9 +33,15 @@
     </div>
 
     <div class="main-cast-card">
+        {{#if cast}}
         {{#each cast}}
         {{> cast}}
         {{/each}}
+        {{else}}
+        <div class="no-cast">
+            <p>There are no casts added yet...</p>
+        </div>
+        {{/if}}
     </div>
 
 </section>
