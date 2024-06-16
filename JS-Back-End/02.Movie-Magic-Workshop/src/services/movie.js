@@ -27,14 +27,14 @@ async function createMovie(movieData, authorId) {
     return movie;
 }
 
-async function updateMovie(movieId, movieData, authorId) {
+async function updateMovie(movieId, movieData, userId) {
     const movie = await Movie.findById(movieId);
 
     if (!movie) {
         throw new Error(`Movie ${movieId} not found!`);
     }
 
-    if (movie.author.toString() != authorId) {
+    if (movie.author.toString() != userId) {
         throw new Error('Access denied!');
     }
 
@@ -69,11 +69,15 @@ async function filterMovies(title, genre, year) {
     return movies;
 }
 
-async function attachCastToMovie(movieId, castId) {
+async function attachCastToMovie(movieId, castId, userId) {
     const movie = await Movie.findById(movieId);
 
     if (!movie) {
         throw new Error(`Movie ${movieId} not found!`);
+    }
+
+    if (movie.author.toString() != userId) {
+        throw new Error('Access denied!');
     }
 
     movie.cast.push(castId);
