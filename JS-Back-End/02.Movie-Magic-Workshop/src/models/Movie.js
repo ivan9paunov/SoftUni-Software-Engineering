@@ -2,38 +2,45 @@ const { Schema, SchemaTypes: Types, model } = require('mongoose');
 
 const movieSchema = new Schema({
     title: {
+        type: String,
         required: true,
-        type: String
+        minLength: [5, 'Title must be at least 5 characters long!'],
+        match: [/^[A-Za-z0-9 ]+$/gi, 'Title may only contain English letters, numbers and spaces!']
     },
     genre: {
+        type: String,
         required: true,
-        type: String
+        minLength: [5, 'Genre must be at least 5 characters long!'],
+        match: [/^[A-Za-z0-9 ]+$/gi, 'Genre may only contain English letters, numbers and spaces!']
     },
     director: {
+        type: String,
         required: true,
-        type: String
+        minLength: [5, 'Director name must be at least 5 characters long!'],
+        match: [/^[A-Za-z0-9 ]+$/gi, 'Director name may only contain English letters, numbers and spaces!']
     },
     year: {
-        required: true,
         type: Number,
-        min: 1878,
-        max: 2100
+        required: true,
+        min: [1900, 'Year should be between 1900 and 2024!'],
+        max: [2024, 'Year should be between 1900 and 2024!']
     },
     imageURL: {
-        required: true,
         type: String,
-        match: /^https?:\/\/.+/
+        required: true,
+        match: [/^https?:\/\/.+/, 'URL should start with http/https!']
     },
     rating: {
-        required: true,
         type: Number,
-        min: 0,
-        max: 5
+        required: true,
+        min: [1, 'Rating is from 1 to 5!'],
+        max: [5, 'Rating is from 1 to 5!']
     },
     description: {
-        required: true,
         type: String,
-        maxLength: 1000
+        required: true,
+        minLength: [20, 'Description should be between 20 and 1000 characters long!'],
+        maxLength: [1000, 'Description should be between 20 and 1000 characters long!']
     },
     cast: {
         type: [Types.ObjectId],

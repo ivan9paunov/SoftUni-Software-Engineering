@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const { isGuest } = require('../middlewares/guards.js');
 const { register, login } = require('../services/user.js');
 const { createToken } = require('../services/token.js');
+const { parseError } = require('../util.js');
 
 const userRouter = Router();
 
@@ -18,16 +19,13 @@ userRouter.post(
     body('password').trim().isAlphanumeric().isLength({ min: 6 }).withMessage('Password must be at least 6 characters long and may contain only letters and numbers!'),
     body('repass').trim().custom((value, { req }) => value == req.body.password).withMessage('Passwords don\'t match!'),
     async (req, res) => {
-        const { email, password, repass } = req.body;
+        const { email, password } = req.body;
 
         try {
             const result = validationResult(req);
 
             if (result.errors.length) {
-                const err = new Error('Input validation error!');
-                err.errors = Object.fromEntries(result.errors.map(e => [e.path, e.msg]));
-
-                throw err;
+                throw result.errors;
             }
 
             const user = await register(email, password);
@@ -38,7 +36,7 @@ userRouter.post(
             res.redirect('/');
 
         } catch (err) {
-            res.render('register', { data: { email }, errors: err.errors, headerTitle: 'Register Page' });
+            res.render('register', { data: { email }, errors: parseError(err).errors, headerTitle: 'Register Page' });
             return;
         }
     }

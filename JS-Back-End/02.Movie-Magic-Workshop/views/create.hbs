@@ -1,6 +1,8 @@
 {{#if errors}}
 <div class="error-container">
-    <p>All fields are required!</p>
+    {{#each errors}}
+    <p>{{this}}</p>
+    {{/each}}
 </div>
 {{/if}}
 
