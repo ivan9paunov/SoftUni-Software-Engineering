@@ -22,7 +22,7 @@ const movieSchema = new Schema({
     imageURL: {
         required: true,
         type: String,
-        regexp: /^https?:\/\/.+/
+        match: /^https?:\/\/.+/
     },
     rating: {
         required: true,

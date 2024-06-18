@@ -119,6 +119,14 @@ footer {
     padding: 0.7em 1em;
 }
 
+.error label {
+    color: red;
+}
+
+.error input.inputFields, .error textarea.inputFields, .error select {
+    border-color: red;
+}
+
 .error-container {
     position: fixed;
     right: 5em;
@@ -127,8 +135,8 @@ footer {
     z-index: 11111;
     top: 13%;
     text-align: center;
-    border-radius: 0.5rem;
-    color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    color: white;
     font-style: italic;
     font-weight: bold;
     height: auto;
@@ -137,10 +145,12 @@ footer {
 }
 
 .error-container>p {
-    background: #22333B;
+    background: #B5838D;
     font-size: 18px;
     padding: 10px;
     height: auto;
+    border-radius: 1rem;
+
 }
 
 .error-container {
@@ -154,15 +164,7 @@ footer {
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
-
-.error label {
-    color: red;
-}
-
-.error input.inputFields, .error textarea.inputFields, .error select {
-    border-color: red;
-}
-
+/* 
 @keyframes cssAnimation {
     to {
         width: 0;
@@ -179,4 +181,4 @@ footer {
         visibility: hidden;
         padding: 0;
     }
-}
+} */

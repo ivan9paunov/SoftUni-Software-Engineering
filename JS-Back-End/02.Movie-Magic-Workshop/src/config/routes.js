@@ -8,9 +8,13 @@ const { getCreateMovie, postCreateMovie, getEditMovie, postEditMovie, getDelete,
 const { getCreateCast, postCreateCast } = require('../controllers/cast.js');
 const { notFound } = require('../controllers/404.js');
 const { getAttach, postAttach } = require('../controllers/attach.js');
-const { registerGet, registerPost, loginGet, loginPost, logout } = require('../controllers/user.js');
+const { userRouter } = require('../controllers/user.js');
 
 const router = Router();
+
+function configRoutes(app) {
+    // TODO
+}
 
 router.get('/', home);
 router.get('/about', about);
@@ -29,11 +33,7 @@ router.post('/create/movie', isUser(), postCreateMovie);
 router.get('/create/cast', isUser(), getCreateCast);
 router.post('/create/cast', isUser(), postCreateCast);
 
-router.get('/register', isGuest(), registerGet);
-router.post('/register', isGuest(), registerPost);
-router.get('/login', isGuest(), loginGet);
-router.post('/login', isGuest(), loginPost);
-router.get('/logout', logout);
+router.use(userRouter);
 
 router.get('*', notFound);
 
