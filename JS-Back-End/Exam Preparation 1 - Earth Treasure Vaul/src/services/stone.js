@@ -41,14 +41,14 @@ async function update(id, data, userId) {
     }
 
     record.name = data.name,
-    record.category = data.category,
-    record.color = data.color,
-    record.image = data.image,
-    record.location = data.location,
-    record.formula = data.formula,
-    record.description = data.description,
+        record.category = data.category,
+        record.color = data.color,
+        record.image = data.image,
+        record.location = data.location,
+        record.formula = data.formula,
+        record.description = data.description,
 
-    await record.save();
+        await record.save();
 
     return record;
 }
@@ -87,6 +87,14 @@ async function deleteById(id, userId) {
     await Stone.findByIdAndDelete(id);
 }
 
+async function search(query) {
+    query = query.toLowerCase();
+    const allStones = await getAll();
+    const queriedStones = allStones.filter(s => s.name.toLowerCase().includes(query));
+
+    return queriedStones;
+}
+
 module.exports = {
     getAll,
     getRecent,
@@ -94,5 +102,6 @@ module.exports = {
     create,
     update,
     likeStone,
-    deleteById
+    deleteById,
+    search
 };

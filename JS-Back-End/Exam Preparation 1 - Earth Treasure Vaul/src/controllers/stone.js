@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { body, validationResult } = require('express-validator');
 const { isUser } = require('../middlewares/guards.js');
 const { parseError } = require('../util.js');
-const { create, getById, update, deleteById, likeStone } = require('../services/stone.js');
+const { create, getById, update, deleteById, likeStone, getAll, search } = require('../services/stone.js');
 
 const stoneRouter = Router();
 
@@ -109,6 +109,19 @@ stoneRouter.get('/delete/:id', isUser(), async (req, res) => {
     } catch (err) {
         res.redirect('/details/' + stoneId);
     }
+});
+
+stoneRouter.get('/search', async (req, res) => {
+    const query = req.query.search;
+    const stones = await getAll();
+    
+    if (query) {
+        const queriedStones = await search(query);
+        res.render('search', { stones: queriedStones, pageTitle: 'Search Stone'});
+        return;
+    }
+
+    res.render('search', { stones, pageTitle: 'Search Stone'});
 });
 
 module.exports = { stoneRouter };
