@@ -9,7 +9,7 @@ function session() {
                 const sessionData = verifyToken(token);
                 req.user = {
                     email: sessionData.email,
-                    id: sessionData.id
+                    id: sessionData._id
                 };
                 res.locals.hasUser = true;
             } catch (err) {
