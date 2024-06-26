@@ -17,6 +17,17 @@ async function getCreator(id) {
     return User.findById(id).lean();
 }
 
+async function getUserCourses(userId) {
+    return Course.find({ author: userId }).lean();
+}
+
+async function getUserSubs(username) {
+    const courses = await getAll();
+    const mySubs = courses.filter(c => c.signUpList.includes(username));
+
+    return mySubs;
+}
+
 async function create(data, authorId) {
     const record = new Course({
         title: data.title,
@@ -95,6 +106,8 @@ module.exports = {
     getById,
     getRecent,
     getCreator,
+    getUserCourses,
+    getUserSubs,
     create,
     update,
     signUp,
