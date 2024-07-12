@@ -1,6 +1,6 @@
 import Footer from './components/footer/Footer.jsx';
 import Header from './components/header/Header.jsx';
-import UserList from './components/user-list/UserList.jsx';
+import UserSection from './components/user-section/UserSection.jsx';
 import './styles.css';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
             <Header />
 
             <main className="main">
-                <UserList />
+                <UserSection />
             </main>
             <Footer />
         </>
