@@ -6,3 +6,12 @@ export const formatDate = (dateString) => {
 
     return formattedDate;
 }
+
+export const detailedDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const formatOptions = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    const formattedDate = date.toLocaleDateString('en-US', formatOptions);
+
+    return formattedDate;
+}

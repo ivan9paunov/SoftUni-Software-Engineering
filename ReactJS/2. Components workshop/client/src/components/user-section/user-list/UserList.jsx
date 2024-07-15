@@ -2,6 +2,7 @@ import UserListItem from './user-list-item/UserListItem.jsx';
 
 export default function UserList({
     users,
+    onUserDetailsClick,
 }) {
     return (
         <div className="table-wrapper">
@@ -69,6 +70,7 @@ export default function UserList({
                         <UserListItem
                             key={user._id}
                             user={user}
+                            onUserDetailsClick={onUserDetailsClick}
                         />
                     )}
                 </tbody>

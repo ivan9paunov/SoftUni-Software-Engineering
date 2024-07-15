@@ -3,12 +3,14 @@ import Pagitation from '../pagination/Pagination.jsx';
 import UserList from './user-list/UserList.jsx';
 import { useEffect, useState } from 'react';
 import UserAdd from './user-add/UserAdd.jsx';
+import UserDetails from './user-details/UserDetails.jsx';
 
 const baseUrl = 'http://localhost:3030/jsonstore';
 
 export default function UserSection() {
     const [users, setUsers] = useState([]);
     const [showAddUser, setShowAddUser] = useState(false);
+    const [showUserDetailsById, setShowUserDetailsById] = useState(null);
 
     useEffect(() => {
         (async function getUsers() {
@@ -52,16 +54,30 @@ export default function UserSection() {
 
         const createdUser = await response.json();
 
-        setUsers(oldUsers => [createdUser, ...oldUsers]);
+        setUsers(oldUsers => [...oldUsers, createdUser]);
 
         setShowAddUser(false);
+    }
+
+    const userDetailsClickHandler = (userId) => {
+        setShowUserDetailsById(userId)
     }
 
     return (
         <section className="card users-container">
             <Search />
 
-            <UserList users={users} />
+            <UserList
+                users={users}
+                onUserDetailsClick={userDetailsClickHandler}
+            />
+
+            {showUserDetailsById && (
+                <UserDetails 
+                    user={users.find(user => user._id == showUserDetailsById)} 
+                    onClose={() => setShowUserDetailsById(null)}
+                />
+            )}
 
             {showAddUser && (
                 <UserAdd
