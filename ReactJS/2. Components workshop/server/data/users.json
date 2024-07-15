@@ -1,4 +1,20 @@
 {
+  "733f3ced-c92a-4b18-95d3-4a6652f17961": {
+        "firstName": "Ivan",
+        "lastName": "Paunov",
+        "email": "ivan@gmail.com",
+        "phoneNumber": "0870001914",
+        "createdAt": "2024-07-12T07:22:00.358Z",
+        "updatedAt": "2024-07-12T07:22:00.358Z",
+        "imageUrl": "https://softuni.bg/users/profile/showavatar/330570aa-bb70-433d-804f-ee01ff522879",
+        "address": {
+            "country": "България",
+            "city": "Хисаря",
+            "street": "Розова долина",
+            "streetNumber": "5"
+        },
+        "_id": "733f3ced-c92a-4b18-95d3-4a6652f17961"
+    },
   "07f260f4-466c-4607-9a33-f7273b24f1b4": {
     "_id": "07f260f4-466c-4607-9a33-f7273b24f1b4",
     "firstName": "Asen",
