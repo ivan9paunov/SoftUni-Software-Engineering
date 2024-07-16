@@ -2,13 +2,9 @@ import { formatDate } from "../../../../utils/dateUtils.js";
 
 export default function UserListItem({
     user,
-    onUserDetailsClick
+    onUserDetailsClick,
+    onUserDeleteClick,
 }) {
-    const deleteUserHandler = (e) => {
-        e.preventDefault();
-        console.log(e.currentTarget.parentElement.parentElement);
-    }
-
     return (
         <tr>
             <td>
@@ -31,7 +27,7 @@ export default function UserListItem({
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete" onClick={deleteUserHandler}>
+                <button className="btn delete-btn" title="Delete" onClick={() => onUserDeleteClick(user._id)}>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
