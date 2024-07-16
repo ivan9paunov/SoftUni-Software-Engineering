@@ -13,6 +13,7 @@ export default function UserSection() {
     const [showAddUser, setShowAddUser] = useState(false);
     const [showUserDetailsById, setShowUserDetailsById] = useState(null);
     const [showUserDeleteById, setShowUserDeleteById] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         (async function getUsers() {
@@ -24,6 +25,8 @@ export default function UserSection() {
                 setUsers(userResult);
             } catch (error) {
                 alert(error.message);
+            } finally {
+                setIsLoading(false);
             }
         })();
     }, []);
@@ -85,6 +88,7 @@ export default function UserSection() {
 
             <UserList
                 users={users}
+                isLoading={isLoading}
                 onUserDetailsClick={userDetailsClickHandler}
                 onUserDeleteClick={userDeleteClickHandler}
             />

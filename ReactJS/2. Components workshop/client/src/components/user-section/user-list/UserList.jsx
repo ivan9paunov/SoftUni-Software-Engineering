@@ -1,16 +1,15 @@
+import Spinner from '../../spinner/Spinner.jsx';
 import UserListItem from './user-list-item/UserListItem.jsx';
 
 export default function UserList({
     users,
+    isLoading,
     onUserDetailsClick,
     onUserDeleteClick,
 }) {
     return (
         <div className="table-wrapper">
-            {/* <div className="loading-shade">
-                <div className="spinner"></div>
-            </div> */}
-
+            {isLoading && <Spinner />}
             <table className="table">
                 <thead>
                     <tr>
