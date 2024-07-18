@@ -6,6 +6,7 @@ export default function UserList({
     isLoading,
     onUserDetailsClick,
     onUserDeleteClick,
+    onUserEditClick,
 }) {
     return (
         <div className="table-wrapper">
@@ -72,6 +73,7 @@ export default function UserList({
                             user={user}
                             onUserDetailsClick={onUserDetailsClick}
                             onUserDeleteClick={onUserDeleteClick}
+                            onUserEditClick={onUserEditClick}
                         />
                     )}
                 </tbody>
