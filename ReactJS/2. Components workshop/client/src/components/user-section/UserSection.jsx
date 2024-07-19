@@ -18,7 +18,6 @@ export default function UserSection() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log('useEffect called');
         (async function getUsers() {
             try {
                 const response = await fetch(`${baseUrl}/users`);
@@ -28,7 +27,6 @@ export default function UserSection() {
                 setUsers(userResult);
                 console.log(userResult);
             } catch (error) {
-                console.error('Fetch error:', error); // More detailed error logging
                 alert(error.message);
             } finally {
                 setIsLoading(false);
@@ -49,9 +47,19 @@ export default function UserSection() {
 
         const formData = new FormData(event.currentTarget);
         const userData = {
-            ...Object.fromEntries(formData),
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            email: formData.get('email'),
+            phoneNumber: formData.get('phoneNumber'),
             createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
+            updatedAt: new Date().toISOString(),
+            imageUrl: formData.get('imageUrl'),
+            address: {
+                country: formData.get('country'),
+                city: formData.get('city'),
+                street: formData.get('street'),
+                streetNumber: formData.get('streetNumber')
+            }
         }
 
         const response = await fetch(`${baseUrl}/users`, {
@@ -127,8 +135,7 @@ export default function UserSection() {
             const idx = oldUsers.findIndex(u => u._id == user._id);
             const newUsers = [...oldUsers];
             newUsers[idx] = updatedUser;
-            return newUsers
-            // oldUsers.splice(idx, 1, updatedUser);
+            return newUsers;
         });
 
         setShowUserEditById(null);
