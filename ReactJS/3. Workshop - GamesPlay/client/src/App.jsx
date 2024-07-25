@@ -11,6 +11,7 @@ import GameDetails from './components/game-details/GameDetails.jsx';
 import { AuthContext } from './contexts/AuthContext.js';
 
 function App() {
+    // TODO: remove this from App component
     const [authState, setAuthState] = useState({});
 
     const changeAuthState = (state) => {
@@ -18,6 +19,7 @@ function App() {
     }
 
     const contextData = {
+        userId: authState._id,
         email: authState.email,
         accessToken: authState.accessToken,
         isAuthenticated: !!authState.email,
