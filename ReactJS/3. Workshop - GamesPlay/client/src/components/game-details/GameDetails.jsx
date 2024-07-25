@@ -10,8 +10,6 @@ export default function GameDetails() {
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
 
-    
-
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
 
