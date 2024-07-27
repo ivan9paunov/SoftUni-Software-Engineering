@@ -6,7 +6,8 @@ const create = (gameId, text) => requester.post(BASE_URL, { gameId, text });
 
 const getAll = (gameId) => {
     const params = new URLSearchParams({
-        where: `gameId="${gameId}"`
+        where: `gameId="${gameId}"`,
+        load: `author=_ownerId:users`
     });
     
     return requester.get(`${BASE_URL}?${params.toString()}`);
