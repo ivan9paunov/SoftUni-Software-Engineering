@@ -19,7 +19,7 @@ function commentsReducer(state, action) {
 }
 
 export function useGetAllComments(gameId) {
-    const [commnets, dispatch] = useReducer(commentsReducer, []);
+    const [comments, dispatch] = useReducer(commentsReducer, []);
 
     useEffect(() => {
         (async () => {
@@ -29,5 +29,5 @@ export function useGetAllComments(gameId) {
         })();
     }, [gameId]);
 
-    return [commnets, dispatch];
+    return [comments, dispatch];
 }
