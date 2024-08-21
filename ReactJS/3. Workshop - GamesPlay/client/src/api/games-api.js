@@ -16,11 +16,14 @@ export const create = (gameData) => request.post(`${BASE_URL}`, gameData);
 
 export const remove = (gameId) => request.del(`${BASE_URL}/${gameId}`);
 
+export const update = (gameId, gameData) => request.put(`${BASE_URL}/${gameId}`, gameData);
+
 const gamesAPI = {
     getAll,
     getOne,
     create,
-    remove
+    remove,
+    update
 };
 
 export default gamesAPI;
