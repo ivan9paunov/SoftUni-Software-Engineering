@@ -10,6 +10,14 @@ export const getAll = async () => {
     return games;
 };
 
+export const getLatest = async () => {
+    const result = await request.get(`${BASE_URL}?sortBy=_createdOn%20desc&pageSize=3`);
+    
+    const latestGames = Object.values(result);
+    
+    return latestGames;
+};
+
 export const getOne = (gameId) => request.get(`${BASE_URL}/${gameId}`);
 
 export const create = (gameData) => request.post(`${BASE_URL}`, gameData);
@@ -20,6 +28,7 @@ export const update = (gameId, gameData) => request.put(`${BASE_URL}/${gameId}`,
 
 const gamesAPI = {
     getAll,
+    getLatest,
     getOne,
     create,
     remove,
