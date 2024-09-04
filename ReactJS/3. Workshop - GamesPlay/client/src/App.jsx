@@ -12,6 +12,7 @@ import GameCreate from './components/game-create/GameCreate.jsx';
 import GameDetails from './components/game-details/GameDetails.jsx';
 import GameEdit from './components/game-edit/GameEdit.jsx';
 import GuestGuard from './components/common/GuestGuard.jsx';
+import UserGuard from './components/common/UserGuard.jsx';
 
 function App() {
     return (
@@ -22,14 +23,16 @@ function App() {
                 <main id="main-content">
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
                         <Route path='/games' element={<GameList />} />
                         <Route path='/games/:gameId/details' element={<GameDetails />} />
                         <Route element={<GuestGuard />}>
-                            <Route path='/logout' element={<Logout />} />
                             <Route path='/games/create' element={<GameCreate />} />
+                            <Route path='/logout' element={<Logout />} />
                             <Route path='/games/:gameId/edit' element={<GameEdit />} />
+                        </Route>
+                        <Route element={<UserGuard />}>
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
                         </Route>
                     </Routes>
                 </main>
