@@ -13,6 +13,7 @@ import GameDetails from './components/game-details/GameDetails.jsx';
 import GameEdit from './components/game-edit/GameEdit.jsx';
 import GuestGuard from './components/common/GuestGuard.jsx';
 import UserGuard from './components/common/UserGuard.jsx';
+import UnauthorizedGuard from './components/common/UnauthorizedGuard.jsx';
 
 function App() {
     return (
@@ -25,10 +26,12 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/games' element={<GameList />} />
                         <Route path='/games/:gameId/details' element={<GameDetails />} />
+                        <Route element={<UnauthorizedGuard />}>
+                            <Route path='/games/:gameId/edit' element={<GameEdit />} />
+                        </Route>
                         <Route element={<GuestGuard />}>
                             <Route path='/games/create' element={<GameCreate />} />
                             <Route path='/logout' element={<Logout />} />
-                            <Route path='/games/:gameId/edit' element={<GameEdit />} />
                         </Route>
                         <Route element={<UserGuard />}>
                             <Route path='/login' element={<Login />} />
