@@ -1,0 +1,31 @@
+h1 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+}
+
+.highlight {
+    background-color: crimson;
+}
+
+#main-title {
+    color: darkblue;
+}
+
+#special-paragraph {
+    font-style: italic;
+}
+
+ul {
+    list-style-type: decimal;
+}
+
+li {
+    color: azure;
+}
+
+div {
+    background-color: slategray;
+}
