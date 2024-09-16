@@ -1,0 +1,35 @@
+p.highlight {
+    color: cornflowerblue;
+    font-size: 18px;
+}
+
+div#special {
+    background-color: #ffc107;
+    padding: 0;
+}
+
+input[type="text"].field {
+    border-color: antiquewhite;
+    padding: 10px;
+}
+
+li.colored {
+    color: darkturquoise;
+}
+
+li.colored.styled {
+    color: crimson;
+    font-style: italic;
+    font-weight: bold;
+}
+
+a.double-underline {
+    text-decoration: underline;
+    text-decoration-style: double;
+    color: #ffc107;
+}
+
+p.highlight.multi {
+    color: blue;
+    font-size: 16px;
+}
