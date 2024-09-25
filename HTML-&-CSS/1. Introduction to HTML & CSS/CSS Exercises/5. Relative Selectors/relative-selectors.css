@@ -1,0 +1,37 @@
+div {
+    margin-left: 20px;
+}
+
+section p {
+    font-size: 18px;
+}
+
+.main-list > li {
+    list-style-type: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.link-list > li, .link-list > li > a{
+    list-style-type: none;
+    text-decoration: none;
+    color: darkblue;
+    margin: 10px -10px;
+}
+
+.main-list :nth-child(2) {
+    color: red;
+}
+
+.link-list > .colored-anchor > a{
+    color: green;
+}
+
+article.highlighted + article {
+    background-color: lightcoral;
+}
+
+h2 ~ p {
+    color: dodgerblue;
+}
