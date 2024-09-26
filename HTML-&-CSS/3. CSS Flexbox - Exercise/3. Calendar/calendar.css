@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    background: #eee;
+}
+
+section > div {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    background: #fff;
+    padding: 1px;
+    box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
+    border-radius: 5px;
+}
+
+.calendar {
+    border-radius: 5px;
+    border: 2px solid silver;
+    margin: 1px;
+    display: flex;
+}
+
+.calendar section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.week {
+    flex-grow: 7;
+    border-right: 1px solid silver;
+}
+
+.note {
+    flex-grow: 3;
+}
+
+.week > div,
+.note > div {
+    border: 1px solid silver;
+    padding: 30px;
+    text-align: center;
+    flex: 1 1 auto;
+}
+
+.week > div:nth-of-type(1),
+.week > div:nth-of-type(7) {
+    flex: 1 1 100%;
+}
