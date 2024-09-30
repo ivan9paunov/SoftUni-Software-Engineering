@@ -1,0 +1,54 @@
+body {
+    background-color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    margin: 30px auto;
+    background-color: white;
+    height: 550px;
+    width: 378px;
+    border-radius: 5px;
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 0px 24px;
+}
+
+img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.info {
+    padding: 10px 30px;
+}
+
+header > span {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+main > p {
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+footer {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    font-style: italic;
+    color: black;
+}
+
+.ellipsis {
+    text-overflow: ellipsis; /* enables ellipsis */
+    white-space: nowrap; /* keeps the text in a single line */
+    overflow: hidden; /* keeps the element from overflowing its parent */
+    display: block;
+    width: 100%;
+    max-width: 320px;
+}
