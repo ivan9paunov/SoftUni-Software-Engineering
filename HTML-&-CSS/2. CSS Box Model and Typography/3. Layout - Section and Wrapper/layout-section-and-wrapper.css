@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+}
+
+.container {
+    border: 3px solid green;
+    height: 100vh;
+    padding: 0px 28px;
+}
+
+.outer-box {
+    border: 3px solid black;
+    margin: 28px auto;
+}
+
+.inner-box {
+    border: 3px solid blue;
+    width: 80%;
+    margin: 25px auto;
+    padding: 30px 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+}
