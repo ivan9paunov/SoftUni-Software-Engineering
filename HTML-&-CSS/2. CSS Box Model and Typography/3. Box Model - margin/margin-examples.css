@@ -1,0 +1,16 @@
+div {
+    border: 3px solid black;
+    padding: 25px 20px;
+}
+
+.first {
+    margin: 40px;
+}
+
+.second {
+    margin: 10px 30px 20px 40px;
+}
+
+.third {
+    margin: -20px;
+}
