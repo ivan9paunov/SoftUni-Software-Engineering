@@ -1,0 +1,58 @@
+html {
+    font-family: 'Lato', sans-serif;
+    padding: 20px;
+}
+
+.as-link,
+.button {
+    margin-right: 15px;
+    padding: 16px 20px;
+    border: 1px solid #c6c6c6;
+    border-radius: 4px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.secondary-btn {
+    background-color: #d8d8d8;
+}
+
+.warning-btn {
+    background-color: #ff9b00;
+}
+
+.yellow-btn {
+    background-color: #f9f9cc;
+}
+
+.white-btn {
+    background-color: white;
+}
+
+.edit-btn {
+    background-color: #d8d8d8;
+    margin-right: 0;
+}
+
+.button {
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: crimson;
+    color: white;
+}
+
+h2 {
+    font-size: 21px;
+}
+
+.link-btn h2 {
+    margin-bottom: 34px;
+}
+
+.buttons h2 {
+    margin-top: 34px;
+}
