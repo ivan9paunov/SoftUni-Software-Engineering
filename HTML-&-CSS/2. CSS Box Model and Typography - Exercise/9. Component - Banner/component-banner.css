@@ -1,0 +1,39 @@
+html {
+    margin: -10px;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    position: relative;
+}
+
+section {
+    background-image: url('./images/image1.jpg');
+    min-height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+h1, h2 {
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 10px 0 0 0;
+}
