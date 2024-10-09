@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    background: #eee;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+article {
+    width: 70%;
+    background: #fff;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.info {
+    width: 67%;
+}
+
+h2 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    opacity: 0.5;
+    line-height: 0.75;
+}
+
+h1 {
+    margin: 0;
+    font-size: 37px;
+    font-weight: 500;
+}
+
+p {
+    opacity: 0.6;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.5em;
+}
+
+.action-btns {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 3px;
+}
+
+.chat-btn {
+    background: #663399;
+    color: #fff;
+}
+
+.img-container {
+    background: #eee;
+    border: 2px solid #dbdbdb;
+    border-radius: 3px;
+    width: calc(33% - 30px);
+}
