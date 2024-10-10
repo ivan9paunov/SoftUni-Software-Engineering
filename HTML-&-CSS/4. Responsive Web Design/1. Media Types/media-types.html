@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="media-types.css">
+    <title>Media Types</title>
+</head>
+
+<body>
+    <header>
+        <h1>Media Types</h1>
+        <p>https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_types</p>
+        <p>Media types describe the general category of a device. Except when using the not or only logical operators,
+            the
+            media type is optional and the all type is implied.</p>
+    </header>
+
+    <main>
+        <article>
+            <h2>all</h2>
+            <p>Suitable for all devices</p>
+            <ul>
+                <li>@media all {</li>
+                <ul class="elements">
+                    <li>* {</li>
+                    <ul class="props">
+                        <li>padding: 0;</li>
+                        <li>margin: 0;</li>
+                        <li>box-sizing: border-box;</li>
+                    </ul>
+                    <li class="closing-bracket">}</li>
+
+                    <li>body {</li>
+                    <ul class="props">
+                        <li>padding: 2em;</li>
+                        <li>font: 14px/1.5 Lato, sans-serif;</li>
+                    </ul>
+                    <li class="closing-bracket">}</li>
+
+                    <li>p {</li>
+                    <ul class="props">
+                        <li>padding-bottom: 1.5em;</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2>print</h2>
+            <p>Intended for paged material and documents viewed on a screen in print preview mode</p>
+            <ul>
+                <li>@media print {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'The page is using a print preview or it was printed';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+        
+        <article>
+            <h2>screen</h2>
+            <p>Intended primarily for screens</p>
+            <ul>
+                <li>@media screen {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'The page is being shown on a screen';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+
+    </main>
+</body>
+
+</html>
