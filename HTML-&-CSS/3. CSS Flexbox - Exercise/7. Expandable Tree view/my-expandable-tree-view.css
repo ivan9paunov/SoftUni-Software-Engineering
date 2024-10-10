@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 10px 25px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+summary {
+    list-style: none;
+    padding-left: 25px;
+    background: url('./images/add-green-circle.png') no-repeat;
+    background-size: 18px;
+}
+
+details[open] > summary {
+    background: url('./images/divide-green-circle.png') no-repeat;
+    background-size: 18px;
+}
+
+.gas-giants,
+.ice-giants {
+    margin-left: 35px;
+}
+
+.gas-giants {
+    margin-top: 10px;
+}
+
+.ice-giants {
+    margin-top: 40px;
+}
+
+.planet {
+    margin-left: 72px;
+}
