@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="media-features.css">
+    <title>Media Features</title>
+</head>
+
+<body>
+    <header>
+        <h1>Media Features</h1>
+        <p>Not complete list</p>
+        <p>https://developer.mozilla.org/en-US/docs/Web/CSS/@media#media_features</p>
+    </header>
+
+    <main>
+        <article>
+            <h2>hover</h2>
+            <p>Does the primary input mechanism allow the user to hover over elements? Added in Media Queries Level 4.
+            </p>
+            <ul>
+                <li>@media (hover: none) {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'This device doesn't support hover';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2>orientation</h2>
+            <p>Orientation of the viewport.</p>
+            <ul>
+                <li>@media (orientation: landscape) {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'The device is in landscape orientation';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2>width</h2>
+            <p>Width of the viewport including width of scrollbar.</p>
+            <ul>
+                <li>@media (width: 600px) {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'The viewport width is 600px';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2>height</h2>
+            <p>Height of the viewport.</p>
+            <ul>
+                <li>@media (height: 800px) {</li>
+                <ul class="elements">
+                    <li>body::before {</li>
+                    <ul class="props">
+                        <li>display: block;</li>
+                        <li>content: 'The viewport height is 800px';</li>
+                    </ul>
+                    <li>}</li>
+                </ul>
+                <li>}</li>
+            </ul>
+        </article>
+    </main>
+</body>
+
+</html>
