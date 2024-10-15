@@ -1,0 +1,265 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.site {
+    margin: 42px 28px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.single-card {
+    background: #f8f8f8;
+    flex: 0 0 calc((100% / 3) - 18px);
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    box-shadow: 0px 0px 75px 3px rgba(100,100,111,0.2);
+    padding: 12px;
+}
+
+.media-image {
+    width: 100%;
+    height: 207px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 6px;
+}
+
+h4.online,
+h4.video,
+h4.workshop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #16c69a;
+    color: white;
+    border-radius: 5px;
+    opacity: 0.7;
+    font-size: 11px;
+    padding: 5px 10px;
+}
+
+h4.video {
+    background: #861884;
+}
+
+h4.workshop {
+    background: #faaa11;
+}
+
+img.author-image {
+    position: absolute;
+    top: 130px;
+    right: -12px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    height: 72px;
+    width: 72px;
+    z-index: 3;
+}
+
+h4.author {
+    position: absolute;
+    top: 152px;
+    right: 52px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 5px rgba(214,211,214,0.3);
+    font-size: 13px;
+    padding: 5px 15px 5px 10px;
+    z-index: 2;
+}
+
+.fa-bell {
+    font-size: 15px;
+    margin-right: 3px;
+}
+
+.meta-data {
+    position: relative;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 4px rgba(214,211,214,0.3);
+    padding: 5px 10px;
+    margin: -35px 10px 0 10px;
+    z-index: 1;
+}
+
+.meta-data h2 {
+    max-width: 90%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.meta-data p::before {
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: black;
+    opacity: 0.2;
+    margin: 6px 0;
+}
+
+.meta-data p {
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.6;
+    line-height: 1.4em;
+}
+
+.card-main {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.helpers {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 8px;
+}
+
+.helpers > h4 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.helpers a {
+    color: #16c69a;
+    font-size: 12px;
+    font-weight: 700;
+    align-self: end;
+}
+
+.single-group {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fbfbfb;
+    padding: 10px 15px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+
+.single-group > div {
+    font-family: "PT Sans Caption", sans-serif;
+}
+
+.single-group > div:nth-of-type(1) {
+    flex-grow: 2;
+}
+.single-group > div:nth-of-type(2),
+.single-group > div:nth-of-type(3) {
+    flex-grow: 1;
+}
+
+.single-group h6 {
+    opacity: 0.5;
+}
+
+.date-and-time {
+    display: flex;
+    gap: 8px;
+}
+
+.date-and-time,
+.ending p {
+    opacity: 0.5;
+    font-size: 13px;
+    line-height: 1.5em;
+}
+
+.pricing {
+    display: flex;
+    justify-content: flex-end;
+    align-content: end;
+}
+
+.pricing p {
+    align-self: flex-end;
+    font-weight: 900;
+    opacity: 0.5;
+}
+
+.card-footer {
+    background: white;
+    color: #16c69a;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 4px rgba(214,211,214,0.3);
+    margin: 20px 10px 8px 10px;
+    padding: 10px 12px 13px 12px;
+}
+
+.card-footer .price {
+    font-size: 27px;
+    font-weight: 900;
+    font-family: "PT Sans Caption", sans-serif;
+}
+
+.fa-credit-card {
+    font-size: 22px;
+}
+
+.card-footer .lectures,
+.card-footer .duration {
+    
+    font-size: 13px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    .card-container {
+        gap: 26px;
+    }
+    
+    .single-card {
+        flex: 0 0 100%;
+    }
+    
+    .media-image {
+        height: 100%;
+    }
+
+    img.author-image {
+        top: 328px;
+    }
+
+    h4.author {
+        top: 350px;
+    }
+
+    .meta-data {
+        padding: 10px 15px;
+    }
+
+    .card-footer {
+        justify-content: space-between;
+        padding: 10px 30px 13px 30px;
+      }
+}
