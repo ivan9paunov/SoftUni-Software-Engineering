@@ -1,0 +1,126 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #eee;
+}
+
+.site {
+    max-width: 1200px;
+    border: 2px solid #d2d2d2;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 56px auto;
+    padding: 32px;
+}
+
+h3 {
+    font-size: 21px;
+    background-color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0px 0px 15px 1px rgba(100,100,111,0.1);
+    border-radius: 3px;
+    margin-bottom: 32px;
+}
+
+h4 {
+    margin-bottom: 3px;
+}
+
+p {
+    font-size: 0.78em;
+    line-height: 1.5em;
+}
+
+.event {
+    display: flex;
+    width: calc(50% + 16px);
+    gap: 15px;
+    text-align: end;
+}
+
+.event:nth-child(even) {
+    margin-left: calc(50% - 16px);
+    gap: 15px;
+    width: auto;
+    text-align: start;
+}
+
+.event section {
+    background-color: white;
+    padding: 20px 30px;
+    box-shadow: 0px 0px 15px 1px rgba(100,100,111,0.1);
+    border-radius: 3px;
+    margin-bottom: 32px;
+}
+
+.event:last-of-type section {
+    margin-bottom: 0;
+}
+
+.event::before {
+    display: block;
+    content: "";
+    width: 29px;
+    height: 29px;
+    background-color: #00cc00;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    border: 2px solid white;
+    margin-top: 15px;
+}
+
+.event:nth-child(even)::before {
+    background-color: #ffa500;
+}
+
+.event:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.section-timeline .container {
+    position: relative;
+}
+
+.section-timeline .container * {
+    position: relative;
+    z-index: 3;
+}
+
+.section-timeline .container::after {
+    display: block;
+    content: "";
+    background-color: #d2d2d2;
+    width: 2px;
+    height: 120%;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 1px);
+    z-index: 2;
+}
+
+@media (max-width: 1200px) {
+    .site {
+        margin: 57px;
+    }
+}
+
+@media (max-width: 800px) {
+    .site {
+        margin: 58px;
+        padding: 28px;
+    }
+    p {
+        font-size: 0.86em;
+    }
+}
