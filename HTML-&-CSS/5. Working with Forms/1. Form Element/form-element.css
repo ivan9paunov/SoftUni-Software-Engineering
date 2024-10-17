@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Lato', sans-serif;
+}
+
+body,
+input,
+textarea,
+select,
+option {
+    font-family: inherit;
+}
+
+body {
+    padding: 2em;
+}
+
+h2 {
+    margin-top: 2em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+section > ul {
+    display: block;
+    padding: 2em;
+    border-radius: 0.3em;
+    margin: 2em 0;
+    border: 1px solid #ccc;
+    overflow: auto;
+    background: #eee;
+}
+
+section > ul > ul {
+    margin-left: 2em;
+}
+
+input {
+    display: inline-block;
+    padding: 0.5em 0.8em;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+input:focus {
+    border-color: #090;
+}

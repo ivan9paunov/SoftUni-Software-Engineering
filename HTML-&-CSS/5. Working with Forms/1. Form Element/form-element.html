@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="form-element.css">
+    <title>Form Element</title>
+</head>
+
+<body>
+    <header>
+        <h1>The Form Element</h1>
+        <p>The form element represents a document section containing interactive controls for submitting information.
+        </p>
+    </header>
+    <main>
+        <section>
+            <h2>Attribute - method="get" (default)</h2>
+            <p>Form data appended to the action URL with a ? separator.</p>
+            <ul>
+                <li>&lt;form action="#" method="get"&gt;</li>
+                <ul>
+                    <li>&lt;input type="search"&gt;</li>
+                </ul>
+                <li>&lt;form&gt;</li>
+            </ul>
+            <form action="#" method="get">
+                <label for="search">Search</label>
+                <input type="search" name="search" id="search">
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Attribute - method="post" (default)</h2>
+            <p>Form data sent as the request body.</p>
+            <ul>
+                <li>&lt;form action="#" method="post"&gt;</li>
+                <ul>
+                    <li>&lt;input type="search"&gt;</li>
+                </ul>
+                <li>&lt;form&gt;</li>
+            </ul>
+            <form action="#" method="post">
+                <label for="search">Search</label>
+                <input type="search" name="search" id="search">
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
