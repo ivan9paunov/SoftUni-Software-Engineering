@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Lato', sans-serif;
+}
+
+body,
+input,
+textarea,
+select,
+option {
+    font-family: inherit;
+}
+
+body {
+    padding: 2em;
+}
+
+h2 {
+    margin-top: 2em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.snipped {
+    display: block;
+    padding: 2em;
+    border-radius: 0.3em;
+    margin: 2em 0;
+    border: 1px solid #ccc;
+    overflow: auto;
+    background: #eee;
+}
+
+.snipped > ul > ul {
+    margin-left: 2em;
+}
+
+.snipped > ul > ul > ul {
+    margin-left: 2em;
+}
+
+.paragraph {
+    margin-bottom: 20px;
+}
+
+input {
+    display: inline-block;
+    padding: 0.8em;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #090;
+}
+
+fieldset {
+    padding: 2em;
+    border: 2px solid #ccc;
+    max-width: 50ch;
+}
+
+fieldset > legend {
+    padding: 0.1em;
+    font-weight: bold;
+}
+
+fieldset label {
+    font-weight: bold;
+}
+
+fieldset input {
+    display: block;
+    width: 100%;
+}
+
+.field {
+    padding-bottom: 1.5em;
+}
