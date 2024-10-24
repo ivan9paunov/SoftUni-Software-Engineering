@@ -1,0 +1,263 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    height: 46px;
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+header img {
+    height: 42px;
+}
+
+nav {
+    color: white;
+    margin-right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 16px;
+    font-weight: bold;
+}
+nav a {
+    height: 100%;
+    align-content: center;
+}
+
+.plans-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto 0 auto;
+}
+
+.notes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    z-index: 2;
+}
+
+.plans {
+    width: 66%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.plan {
+    width: 400px;
+    margin: 32px 0 60px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.plan .info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.plans-section > h3 {
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+}
+
+.plan h3 {
+    font-size: 24px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.plan ul {
+    height: 140px;
+    padding-left: 25px;
+    list-style: circle;
+    font-size: 16px;
+    opacity: 0.5;
+}
+.individual ul {
+    margin: 50px 0 20px 0;
+}
+.family ul {
+    margin: 20px 0 50px 0;
+}
+
+.plan ul li {
+    line-height: 1.2rem;
+    margin-bottom: 8px;
+}
+.plan ul li:last-of-type {
+    margin-bottom: 0;
+}
+
+.plan .subscribtion {
+    margin: 20px auto;
+    
+}
+.plan .subscribtion a {
+    background-color: #1db954;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 40px;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.plan .footer {
+    position: relative;
+    background-color: black;
+    color: white;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    padding: 18px 0;
+    font-size: 20px;
+}
+.plan .footer p:nth-of-type(2)::before {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 1px;
+    height: 40px;
+    top: 10px;
+    left: 50%;
+    background-color: #8b8b8b;
+}
+
+.plans-section::before {
+    position: absolute;
+    display: block;
+    content: "";
+    height: 298px;
+    width: 100%;
+    top: -50px;
+    background-color: #1db954;
+    z-index: 1;
+}
+
+.instructions-section {
+    display: flex;
+    margin: 80px 170px 60px 80px;
+    gap: 100px;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.instructions h3 {
+    font-size: 18px;
+}
+
+.instructions p {
+    opacity: 0.8;
+}
+
+.instructions-section img {
+    width: 50%;
+    height: 50%;
+    align-self: center;
+}
+
+.premium-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.premium-features h2 {
+    font-size: 40px;
+}
+
+.wrapper {
+    width: 66%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.premium-features table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.premium-features table td {
+    padding: 7px 12px;
+}
+
+.premium-features table tr:nth-of-type(odd) {
+    background-color: #cccbcb;
+}
+.premium-features table tr:nth-of-type(even) {
+    background-color: #81d8a0;
+}
+
+.premium-features table tr > td:nth-of-type(2),
+.premium-features table tr > td:nth-of-type(3) {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    background-color: black;
+    padding: 30px 0;
+}
+
+@media (max-width: 1250px) {
+    .plans {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .plans {
+        width: 95%;
+    }
+
+    .instructions-section {
+        flex-direction: column;
+        margin: 80px 40px 60px 40px;
+    }
+}
+
+@media (max-width: 850px) {
+    .plans {
+        width: 410px;
+    }
+}
