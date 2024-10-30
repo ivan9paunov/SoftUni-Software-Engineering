@@ -1,0 +1,102 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap);
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+section.pet-article {
+    width: 94%;
+    margin: 25px auto;
+    padding: 20px 55px;
+    box-shadow: 0px 20px 34px 6px rgb(164, 164, 164);
+    display: flex;
+    gap: 30px;
+}
+
+.img-container {
+    width: 40%;
+}
+.img-container img {
+    width: 98%;
+    height: 100%;
+}
+
+.about-us {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+}
+.about-us .header {
+    background-color: #f3f3f3;
+    border-left: 4px solid #7ab730;
+    padding: 30px 40px;
+}
+.about-us .header h6 {
+    color: #7ab730;
+    margin-bottom: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+.about-us .header h1 {
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+.about-us > p {
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.6;
+    text-align: center;
+}
+.about-us .toggler {
+    background-color: #f3f3f3;
+    padding: 20px;
+}
+.about-us .toggler .btns {
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+}
+.btns input,
+.btns input {
+    width: 50%;
+    border: 0;
+    padding: 5px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btns input:nth-of-type(1) {
+    background-color: #7ab730;
+    color: white;
+}
+.btns input:nth-of-type(2) {
+    background-color: #f0f0f0;
+    color: #7ab730;
+}
+.btns input:nth-of-type(1):hover {
+    background-color: #69a51f;
+    color: white;
+}
+.btns input:nth-of-type(2):hover {
+    background-color: #d9d9d9;
+    color: #7ab730;
+}
+.about-us .toggler p {
+    font-size: 12px;
+    line-height: 1.1em;
+    opacity: 0.6;
+    margin-bottom: 8px;
+}
