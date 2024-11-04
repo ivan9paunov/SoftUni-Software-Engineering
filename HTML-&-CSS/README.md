@@ -1,6 +1,6 @@
 ![HTML & CSS](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/HTML-&-CSS/headerIMG.jpg)
 
-![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/HTML-&-CSS/HTML-&-CSS%20-%20September%202024%20-%20Certificate.jpeg
+![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/HTML-&-CSS/HTML-%26-CSS%20-%20September%202024%20-%20Certificate.jpeg
 )
 
 ---
