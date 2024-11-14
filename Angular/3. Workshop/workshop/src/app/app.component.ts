@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./core/header/header.component";
@@ -14,8 +13,6 @@ import { MainComponent } from './main/main.component';
 })
 export class AppComponent {
   title = 'workshop';
-
-  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     // this.http.get('https://angular-softuni-workshop-default-rtdb.firebaseio.com/workshop/.json').subscribe(x => {

@@ -122,3 +122,48 @@ blockquote p:last-child {
 blockquote p.author {
     text-align: right;
 }
+
+body {
+    max-width: 1366px;
+    margin: auto;
+    position: relative;
+    min-height: 100vh;
+    font-optical-sizing: auto;
+    background-color: #e4e3e3;
+}
+
+h2 {
+    text-align: center;
+    border-bottom: 1px dashed #999;
+}
+
+span {
+    font-weight: bold;
+}
+
+button {
+    background-color: #4ebced;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1280px) {
+    html {
+        font-size: 18px;
+    }
+}

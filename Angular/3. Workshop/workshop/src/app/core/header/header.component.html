@@ -4,16 +4,18 @@
             <img src="./images/logo.png" />
             <p class="logo">SoftUni Forum</p>
         </div>
-        <div class="mini-navbar">
-            <ul>
-                <li>
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="#">Register</a>
-                </li>
-            </ul>
-        </div>
+        @if (!isLoggedIn) {
+            <div class="mini-navbar">
+                <ul>
+                    <li>
+                        <a href="#">Login</a>
+                    </li>
+                    <li>
+                        <a href="#">Register</a>
+                    </li>
+                </ul>
+            </div>
+        }
     </div>
     <nav>
         <ul>
