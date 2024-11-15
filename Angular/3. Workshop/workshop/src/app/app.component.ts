@@ -11,12 +11,4 @@ import { MainComponent } from './main/main.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'workshop';
-
-  ngOnInit() {
-    // this.http.get('https://angular-softuni-workshop-default-rtdb.firebaseio.com/workshop/.json').subscribe(x => {
-    //   console.log(x);
-    // });
-  }
-}
+export class AppComponent {}
