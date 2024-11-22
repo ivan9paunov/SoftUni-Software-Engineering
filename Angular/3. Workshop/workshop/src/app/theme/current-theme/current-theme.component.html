@@ -1,6 +1,9 @@
 <div class="container">
     <!-- theme content  -->
     <div class="theme-content">
+        @if (!isLoggedIn) {
+        <app-home />
+        }
         <!-- theme-title  -->
         <div class="theme-title">
             <div class="theme-name-wrapper">
@@ -36,6 +39,7 @@
             </div>
         </div>
         }
+        @if (isLoggedIn) {
         <div class="answer-comment">
             <p><span>currentUser</span> comment:</p>
             <div class="answer">
@@ -45,6 +49,6 @@
                 </form>
             </div>
         </div>
-
+        }
     </div>
 </div>
