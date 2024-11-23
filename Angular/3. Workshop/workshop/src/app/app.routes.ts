@@ -23,7 +23,7 @@ export const routes: Routes = [
             { 
                 path: ':themeId', 
                 component: CurrentThemeComponent, 
-                // canActivate: [AuthGuard] 
+                canActivate: [AuthGuard] 
             }
         ]
     },

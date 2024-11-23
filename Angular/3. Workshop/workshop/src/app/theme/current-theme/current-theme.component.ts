@@ -21,6 +21,10 @@ export class CurrentThemeComponent implements OnInit {
     return this.userService.isLogged;
   }
 
+  get firstName(): string {
+    return this.userService.user?.firstName || '';
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.params['themeId']
 
