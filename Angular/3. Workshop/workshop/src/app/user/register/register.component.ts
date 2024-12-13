@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../constants';
 import { matchPasswordsValidator } from '../../utils/match-passwords.validator';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -21,23 +22,25 @@ export class RegisterComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
       rePassword: new FormControl('', [Validators.required]),
     },
-    {
-      validators: [matchPasswordsValidator('password', 'rePassword')],
-    }
-  ),
+      {
+        validators: [matchPasswordsValidator('password', 'rePassword')],
+      }
+    ),
   });
 
+  constructor(private userService: UserService, private router: Router) {};
+
   isFieldTextMissing(controlName: string) {
-    return (this.form.get(controlName)?.touched  && this.form.get(controlName)?.errors?.['required']);
-  } 
+    return (this.form.get(controlName)?.touched && this.form.get(controlName)?.errors?.['required']);
+  }
 
   get isNotMinLength() {
-    return (this.form.get('username')?.touched  && this.form.get('username')?.errors?.['minlength']);
-  } 
-  
+    return (this.form.get('username')?.touched && this.form.get('username')?.errors?.['minlength']);
+  }
+
   get isEmailNotValid() {
-    return (this.form.get('email')?.touched  && this.form.get('email')?.errors?.['emailValidator']);
-  } 
+    return (this.form.get('email')?.touched && this.form.get('email')?.errors?.['emailValidator']);
+  }
 
   get passGroup() {
     return this.form.get('passGroup');
@@ -48,7 +51,9 @@ export class RegisterComponent {
       return;
     }
 
-    console.log(this.form.value);
-
+    const { username, email, tel, passGroup: { password, rePassword } = {} } = this.form.value;
+    this.userService.register(username!, email!, tel!, password!, rePassword!).subscribe(() => {
+      this.router.navigate(['/themes']);
+    });
   }
 }
