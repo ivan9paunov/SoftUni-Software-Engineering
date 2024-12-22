@@ -28,7 +28,11 @@ export const routes: Routes = [
             }
         ]
     },
-    { path: 'add-theme', component: AddThemeComponent, canActivate: [AuthGuard] },
+    { 
+        path: 'add-theme',
+        loadComponent: () => import('./theme/add-theme/add-theme.component').then(c => c.AddThemeComponent),
+        canActivate: [AuthGuard],
+     },
 
     { path: 'error', component: ErrorMsgComponent },
     { path: '404', component: PageNotFoundComponent },
