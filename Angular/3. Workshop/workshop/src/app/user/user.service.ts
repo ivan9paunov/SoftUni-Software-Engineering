@@ -37,13 +37,19 @@ export class UserService {
 
   logout() {
     return this.http
-    .post('/api/logout', {})
-    .pipe(tap(user => this.user$$.next(null)));
+      .post('/api/logout', {})
+      .pipe(tap(user => this.user$$.next(null)));
   };
 
   getProfile() {
     return this.http
       .get<UserForAuth>('/api/users/profile')
+      .pipe(tap(user => this.user$$.next(user)));
+  }
+
+  updateProfile(username: string, email: string, tel?: string) {
+    return this.http
+      .put<UserForAuth>(`/api/users/profile`, { username, email, tel })
       .pipe(tap(user => this.user$$.next(user)));
   }
 }
