@@ -1,4 +1,4 @@
-<!-- ![Angular](https://github.com/BoykoPetevBoev/React-JS-June-2020/blob/master/_README/React.jpg) -->
+![Angular](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/Angular/Angular%20-%20header.jpg)
 
 ![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/Angular/Angular%20-%20October%202024%20-%20Certificate.jpeg)
 
