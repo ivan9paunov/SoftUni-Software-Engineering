@@ -1,3 +1,5 @@
+![PostgreSQL](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/PostgreSQL/PostgreSQL%20-%20header.jpg)
+
 ![Image Not Found](https://github.com/ivan9paunov/SoftUni-Software-Engineering/blob/main/PostgreSQL/PostgreSQL%20-%20January%202025%20-%20Certificate.jpeg)
 
 ---
